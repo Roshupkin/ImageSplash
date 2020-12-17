@@ -61,10 +61,11 @@ dependencies {
     def retrofit_v = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_v"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_v"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 
-    def hilt_v = '2.29.1-alpha'
-    implementation "com.google.dagger:hilt-android:2.30.1-alpha"
-    kapt "com.google.dagger:hilt-android-compiler:2.30.1-alpha"
+    def hilt_v = '2.30.1-alpha'
+    implementation "com.google.dagger:hilt-android:$hilt_v"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_v"
 
     def hilt_vm = '1.0.0-alpha02'
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_vm"
