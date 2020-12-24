@@ -7,18 +7,19 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.internal.managers.ApplicationComponentManager
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@InstallIn(ApplicationComponentManager::class)
+@InstallIn(SingletonComponent::class)
 @Module
 object RetrofitModule {
     @Singleton
     @Provides
-    fun provideGsonBuilder(): Gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
+    fun provideGsonBuilder(): Gson = GsonBuilder().create()
 
     @Singleton
     @Provides

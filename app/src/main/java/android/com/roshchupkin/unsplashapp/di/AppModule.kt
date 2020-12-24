@@ -3,11 +3,11 @@ package android.com.roshchupkin.unsplashapp.di
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.internal.managers.ApplicationComponentManager
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 
-@InstallIn(ApplicationComponentManager::class)
+@InstallIn(SingletonComponent::class)
 @Module
 object AppModule {
     @Singleton

@@ -1,8 +1,0 @@
-package android.com.roshchupkin.unsplashapp.network.entity
-
-data class Location(
-    val city: String,
-    val country: String,
-    val name: String,
-    val position: Position
-)
