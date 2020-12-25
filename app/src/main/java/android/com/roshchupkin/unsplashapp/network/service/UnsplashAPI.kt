@@ -9,6 +9,6 @@ interface UnsplashAPI {
     @Headers("Accept-Version: v1", "Authorization: Client-ID 7wZDrw0B0aYLZn03O3AWndMHBiGYsRSxhYl3hHMcTo4")
     @GET("photos/random")
     suspend fun getRandomPhoto(
-        @Query("count") count: Int = 10
+        @Query("count") count: Int = 20
     ): List<RandomPhotoListResponse>
 }

@@ -31,9 +31,9 @@ android {
         }
     }
 
-   /* buildFeatures {
+    buildFeatures {
         viewBinding true
-    }*/
+    }
 
     buildTypes {
         release {
@@ -98,6 +98,14 @@ dependencies {
     def nav_v = "2.3.2"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_v"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_v"
+
+    // Glide
+    def glideVersion = " 4.11.0"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+
+    // Paging 3
+    def pagingVersion = "3.0.0-alpha11"
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
 }
 kapt {
     correctErrorTypes true
