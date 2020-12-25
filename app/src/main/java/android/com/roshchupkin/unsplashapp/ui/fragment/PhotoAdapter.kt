@@ -4,17 +4,14 @@ import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.databinding.ItemRandomPhotoBinding
 import android.com.roshchupkin.unsplashapp.network.entity.RandomPhotoListResponse
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import kotlinx.android.synthetic.main.item_random_photo.view.*
 
-class PhotoAdapter(private val listener: OnItemClickListener) :
+class PhotoAdapter(private val interaction: Interaction? = null) :
     PagingDataAdapter<RandomPhotoListResponse, PhotoAdapter.PhotoViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -38,7 +35,6 @@ class PhotoAdapter(private val listener: OnItemClickListener) :
     }
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
         val binding =
             ItemRandomPhotoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -50,27 +46,29 @@ class PhotoAdapter(private val listener: OnItemClickListener) :
         val currentItem = getItem(position)
 
         if (currentItem != null) {
-            holder.bind(currentItem)
+            holder.bind(
+                currentItem,
+                interaction
+            )
         }
     }
 
 
-    inner class PhotoViewHolder(private val binding: ItemRandomPhotoBinding) :
+    inner class PhotoViewHolder(
+        private val binding: ItemRandomPhotoBinding
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.root.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val item = getItem(position)
-                    if (item != null) {
-                        listener.onItemClick(item)
-                    }
+
                 }
             }
         }
 
-        fun bind(photo: RandomPhotoListResponse) {
+        fun bind(photo: RandomPhotoListResponse, interaction: Interaction?) {
             binding.apply {
                 Glide.with(itemView)
                     .load(photo.urls.regular)
@@ -80,12 +78,14 @@ class PhotoAdapter(private val listener: OnItemClickListener) :
                     .into(imageViewPhoto)
 
                 textViewUserName.text = photo.user.username
+                textViewUserName.setOnClickListener {
+                    interaction?.onItemSelected(absoluteAdapterPosition, photo) }
             }
         }
     }
 
-    interface OnItemClickListener {
-        fun onItemClick(photo: RandomPhotoListResponse)
+    interface Interaction {
+        fun onItemSelected(position: Int, item: RandomPhotoListResponse)
     }
 
 

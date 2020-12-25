@@ -16,7 +16,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo),  PhotoAdapter.OnItemClickListener{
+class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo), PhotoAdapter.Interaction {
     private val randomPhotoViewModule: RandomPhotoViewModule by viewModels()
     lateinit var photoAdapter: PhotoAdapter
 
@@ -36,7 +36,8 @@ class RandomPhotoFragment : Fragment(R.layout.fragment_random_photo),  PhotoAdap
 
     }
 
-    override fun onItemClick(photo: RandomPhotoListResponse) {
+
+    override fun onItemSelected(position: Int, item: RandomPhotoListResponse) {
         TODO("Not yet implemented")
     }
 
