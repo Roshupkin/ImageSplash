@@ -1,6 +1,6 @@
 package android.com.roshchupkin.unsplashapp.ui.viewmodule
 
-import android.com.roshchupkin.unsplashapp.repository.RandomPhotoRepository
+import android.com.roshchupkin.unsplashapp.repository.RandomImageRepository
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
@@ -9,20 +9,13 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 
 @ExperimentalCoroutinesApi
-class RandomPhotoViewModule
+class RandomImageViewModule
 @ViewModelInject
 constructor(
-    private val randomPhotoRepository: RandomPhotoRepository,
+    private val randomImageRepository: RandomImageRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-        val randomPhoto =   randomPhotoRepository.getRandomPhoto().cachedIn(viewModelScope)
+        val randomPhoto =   randomImageRepository.getRandomPhoto().cachedIn(viewModelScope)
 
 }
-
-
-/*
-sealed class RandomPhotoStateEvent {
-    object GetPhotoEvent : RandomPhotoStateEvent()
-
-}*/

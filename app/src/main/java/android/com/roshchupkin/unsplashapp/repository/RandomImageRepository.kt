@@ -5,7 +5,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 
-class RandomPhotoRepository(
+class RandomImageRepository(
     private val unsplashAPI: UnsplashAPI
 ) {
 fun getRandomPhoto()=Pager(

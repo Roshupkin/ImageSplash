@@ -1,6 +1,6 @@
 package android.com.roshchupkin.unsplashapp.network.entity
 
-data class Urls(
+data class UrlsNetworkEntity(
     val full: String,
     val raw: String,
     val regular: String,

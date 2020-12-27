@@ -1,6 +1,6 @@
 package android.com.roshchupkin.unsplashapp.network.service
 
-import android.com.roshchupkin.unsplashapp.network.entity.RandomPhotoListResponse
+import android.com.roshchupkin.unsplashapp.network.entity.RandomImageNetworkEntity
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
@@ -10,5 +10,5 @@ interface UnsplashAPI {
     @GET("photos/random")
     suspend fun getRandomPhoto(
         @Query("count") count: Int = 20
-    ): List<RandomPhotoListResponse>
+    ): List<RandomImageNetworkEntity>
 }

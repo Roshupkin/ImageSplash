@@ -1,6 +1,7 @@
-package android.com.roshchupkin.unsplashapp.network.entity
+package android.com.roshchupkin.unsplashapp.model
 
-data class RandomPhotoListResponse(
+
+data class RandomImage(
     val description: String,
     val height: Int,
     val id: String,

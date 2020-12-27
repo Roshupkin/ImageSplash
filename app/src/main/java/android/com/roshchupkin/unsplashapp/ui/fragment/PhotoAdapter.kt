@@ -2,7 +2,7 @@ package android.com.roshchupkin.unsplashapp.ui.fragment
 
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.databinding.ItemRandomPhotoBinding
-import android.com.roshchupkin.unsplashapp.network.entity.RandomPhotoListResponse
+import android.com.roshchupkin.unsplashapp.network.entity.RandomImageNetworkEntity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -12,21 +12,21 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
 class PhotoAdapter(private val interaction: Interaction? = null) :
-    PagingDataAdapter<RandomPhotoListResponse, PhotoAdapter.PhotoViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<RandomImageNetworkEntity, PhotoAdapter.PhotoViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RandomPhotoListResponse>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RandomImageNetworkEntity>() {
 
             override fun areItemsTheSame(
-                oldItem: RandomPhotoListResponse,
-                newItem: RandomPhotoListResponse
+                oldItem: RandomImageNetworkEntity,
+                newItem: RandomImageNetworkEntity
             ): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: RandomPhotoListResponse,
-                newItem: RandomPhotoListResponse
+                oldItem: RandomImageNetworkEntity,
+                newItem: RandomImageNetworkEntity
             ): Boolean {
                 return oldItem == newItem
             }
@@ -68,24 +68,24 @@ class PhotoAdapter(private val interaction: Interaction? = null) :
             }
         }
 
-        fun bind(photo: RandomPhotoListResponse, interaction: Interaction?) {
+        fun bind(image: RandomImageNetworkEntity, interaction: Interaction?) {
             binding.apply {
                 Glide.with(itemView)
-                    .load(photo.urls.regular)
+                    .load(image.urlsNetworkEntity.regular)
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_error_loading_24)
                     .into(imageViewPhoto)
 
-                textViewUserName.text = photo.user.username
+                textViewUserName.text = image.userNetworkEntity.username
                 textViewUserName.setOnClickListener {
-                    interaction?.onItemSelected(absoluteAdapterPosition, photo) }
+                    interaction?.onItemSelected(absoluteAdapterPosition, image) }
             }
         }
     }
 
     interface Interaction {
-        fun onItemSelected(position: Int, item: RandomPhotoListResponse)
+        fun onItemSelected(position: Int, item: RandomImageNetworkEntity)
     }
 
 
