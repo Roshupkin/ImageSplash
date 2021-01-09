@@ -14,8 +14,9 @@ import javax.inject.Singleton
 object MapperModule {
     @Singleton
     @Provides
-    fun providesRandomImageCacheMapper(
+    fun provideRandomImageCacheMapper(
         urlsCacheMapper: UrlsCacheMapper,
         userCacheMapper: UserCacheMapper
-    ):RandomImageCacheMapper = RandomImageCacheMapper(urlsCacheMapper,userCacheMapper)
+    ): RandomImageCacheMapper = RandomImageCacheMapper(urlsCacheMapper, userCacheMapper)
+
 }

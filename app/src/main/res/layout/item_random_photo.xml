@@ -24,28 +24,38 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="8dp"
+        android:background="@color/teal_200"
+        android:src="@drawable/ic__person_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_view_photo"
-        android:src="@drawable/ic__person_24"
-        android:background="@color/teal_200"
 
         />
 
     <TextView
         android:id="@+id/text_view_user_name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="120dp"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
-        tools:text="username"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text_position_on_adapter"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/image_view_user_profile"
+        app:layout_constraintTop_toBottomOf="@+id/image_view_photo"
+        tools:text="username" />
+
+    <TextView
+        android:id="@+id/text_position_on_adapter"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_view_photo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

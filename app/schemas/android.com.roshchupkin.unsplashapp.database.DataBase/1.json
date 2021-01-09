@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "dc605f2bf1947c0be4ac7ab710e1cf24",
+    "identityHash": "710d6340da9e4ed7fa9381564d80718d",
     "entities": [
       {
         "tableName": "random_image",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `description` TEXT NOT NULL, `height` INTEGER NOT NULL, `width` INTEGER NOT NULL, `urlsImageFull` TEXT NOT NULL, `username` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `description` TEXT, `height` INTEGER, `width` INTEGER, `urlsImageRegular` TEXT, `username` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -18,31 +18,31 @@
             "fieldPath": "description",
             "columnName": "description",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "height",
             "columnName": "height",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "width",
             "columnName": "width",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
-            "fieldPath": "urlsImageFull",
-            "columnName": "urlsImageFull",
+            "fieldPath": "urlsImageRegular",
+            "columnName": "urlsImageRegular",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "username",
             "columnName": "username",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -58,7 +58,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dc605f2bf1947c0be4ac7ab710e1cf24')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '710d6340da9e4ed7fa9381564d80718d')"
     ]
   }
 }

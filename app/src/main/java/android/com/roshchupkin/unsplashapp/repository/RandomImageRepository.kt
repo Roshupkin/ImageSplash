@@ -1,20 +1,37 @@
 package android.com.roshchupkin.unsplashapp.repository
 
+import android.com.roshchupkin.unsplashapp.database.dao.RandomImageDao
+import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
+import android.com.roshchupkin.unsplashapp.database.mapper.RandomImageCacheMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.liveData
+import android.util.Log
+import androidx.paging.*
+import kotlinx.coroutines.flow.Flow
 
+@ExperimentalPagingApi
 class RandomImageRepository(
-    private val unsplashAPI: UnsplashAPI
+    private val unsplashAPI: UnsplashAPI,
+    private val randomImageDao: RandomImageDao,
+    private val randomImageCacheMapper: RandomImageCacheMapper
 ) {
-fun getRandomPhoto()=Pager(
-    config = PagingConfig(
-        pageSize = 20,
-        maxSize = 100,
-        enablePlaceholders = false
-    ),
-    pagingSourceFactory = { RandomPagingSource(unsplashAPI) }
-).liveData
+
+
+    fun getRandomPhoto(): Flow<PagingData<RandomImageCacheEntity>> {
+        val pagingSource = { randomImageDao.getRandomImage() }
+        Log.e("RandomImageDao", "${pagingSource}")
+        return Pager(
+            config = PagingConfig(
+                pageSize = 30,
+                enablePlaceholders = false,
+
+            ),
+            remoteMediator = RandomPagingMediator(
+                unsplashAPI,
+                randomImageDao,
+                randomImageCacheMapper
+            ), pagingSourceFactory = pagingSource
+        ).flow
+    }
+
 
 }

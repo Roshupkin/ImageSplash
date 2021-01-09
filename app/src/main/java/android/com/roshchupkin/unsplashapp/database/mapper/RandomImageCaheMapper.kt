@@ -1,8 +1,10 @@
 package android.com.roshchupkin.unsplashapp.database.mapper
 
+
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
-import android.com.roshchupkin.unsplashapp.model.RandomImage
+import android.com.roshchupkin.unsplashapp.network.entity.RandomImageNetworkEntity
 import android.com.roshchupkin.unsplashapp.utill.EntityMapper
+import androidx.paging.PagingData
 import javax.inject.Inject
 
 class RandomImageCacheMapper
@@ -10,21 +12,21 @@ class RandomImageCacheMapper
 constructor(
     private val urlsCacheMapper: UrlsCacheMapper,
     private val userCacheMapper: UserCacheMapper
-) : EntityMapper<RandomImageCacheEntity, RandomImage> {
+) : EntityMapper<RandomImageCacheEntity, RandomImageNetworkEntity> {
 
-    override fun mapToEntity(domainModule: RandomImage): RandomImageCacheEntity {
+    override fun mapToEntity(domainModule: RandomImageNetworkEntity): RandomImageCacheEntity {
         return RandomImageCacheEntity(
             id = domainModule.id,
             description = domainModule.description,
             height = domainModule.height,
             width = domainModule.width,
-            urlsImageFull = domainModule.urls.full,
-            username = domainModule.user.username
+            urlsImageRegular = domainModule.urls?.regular,
+            username = domainModule.user?.username
         )
     }
 
-    override fun mapFromEntity(entity: RandomImageCacheEntity): RandomImage {
-        return RandomImage(
+    override fun mapFromEntity(entity: RandomImageCacheEntity): RandomImageNetworkEntity {
+        return RandomImageNetworkEntity(
             id = entity.id,
             description = entity.description,
             height = entity.height,
@@ -32,5 +34,13 @@ constructor(
             urls = urlsCacheMapper.mapFromEntity(entity),
             user = userCacheMapper.mapFromEntity(entity)
         )
+    }
+
+    fun mapToEntityList(domainModels: List<RandomImageNetworkEntity>): List<RandomImageCacheEntity> {
+        return domainModels.map { mapToEntity(it) }
+    }
+
+    fun mapFromEntityList(entities: List<RandomImageCacheEntity>): List<RandomImageNetworkEntity> {
+        return entities.map { mapFromEntity(it) }
     }
 }
