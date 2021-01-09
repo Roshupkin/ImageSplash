@@ -11,10 +11,10 @@ import androidx.room.Query
 @Dao
 interface RandomImageDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertRandomImage(randomImageNetworkEntity: RandomImageCacheEntity): Long
+    suspend fun insertRandomImage(randomImageNetworkEntity: List<RandomImageCacheEntity>)
 
     @Query("SELECT * FROM random_image ")
-     fun getRandomImage(): PagingSource<Int, RandomImageCacheEntity>
+    fun getRandomImage(): PagingSource<Int, RandomImageCacheEntity>
 
     @Query("DELETE FROM random_image")
     suspend fun clearAll()

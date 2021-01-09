@@ -27,18 +27,18 @@ class RandomPagingMediator(
             val listRandomImage = unsplashAPI.getRandomImage()
             Log.e("RAndomPagingMediator", "$listRandomImage")
 
-            for (randomImage in listRandomImage) {
-               val randomImageCache =  randomImageCacheMapper.mapToEntity(randomImage)
+
+               val randomImageCache =  randomImageCacheMapper.mapToEntityList(listRandomImage)
                 randomImageDao.insertRandomImage(randomImageCache)
-            }
+
 
 
 
             val endOfPagnationReached = listRandomImage.isEmpty()
             Log.e("RA", "$endOfPagnationReached")
-            return MediatorResult.Success( endOfPagnationReached)
-        } catch (esception: IOException) {
-            return MediatorResult.Error(esception)
+            return MediatorResult.Success(endOfPaginationReached =  endOfPagnationReached)
+        } catch (exception: IOException) {
+            return MediatorResult.Error(exception)
         }
 
 

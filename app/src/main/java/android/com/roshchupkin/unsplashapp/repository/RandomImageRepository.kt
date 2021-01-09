@@ -21,8 +21,11 @@ class RandomImageRepository(
         Log.e("RandomImageDao", "${pagingSource}")
         return Pager(
             config = PagingConfig(
-                pageSize = 30,
-                enablePlaceholders = false,
+                pageSize = 10,
+                enablePlaceholders = true,
+                prefetchDistance =10,
+                initialLoadSize = 20
+
 
             ),
             remoteMediator = RandomPagingMediator(

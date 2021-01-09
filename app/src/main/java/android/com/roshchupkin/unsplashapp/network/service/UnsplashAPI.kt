@@ -6,7 +6,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface UnsplashAPI {
-    @Headers("Accept-Version: v1", "Authorization: Client-ID 7wZDrw0B0aYLZn03O3AWndMHBiGYsRSxhYl3hHMcTo4")
+    @Headers("Accept-Version: v1", "Authorization: Client-ID BvAOjlA1CiId__0QwO7W68nQNcFlkaVlHT4MoRISKUE")
     @GET("photos/random")
     suspend fun getRandomImage(
         @Query("count") count: Int = 30

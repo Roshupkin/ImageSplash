@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        main_fragment_container.adapter = ViewPagerAdapter(this)
-        TabLayoutMediator(tab_layout, main_fragment_container) { tab, position ->
+        viewpager_fragment_container.adapter = ViewPagerAdapter(this)
+        TabLayoutMediator(tab_layout, viewpager_fragment_container) { tab, position ->
             when(position){
                 0->{
                    tab.text = "Random Photo"
