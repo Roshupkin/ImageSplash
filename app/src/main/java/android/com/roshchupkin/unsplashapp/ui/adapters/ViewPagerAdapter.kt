@@ -4,14 +4,17 @@ import android.com.roshchupkin.unsplashapp.ui.fragment.FragmentTest
 import android.com.roshchupkin.unsplashapp.ui.fragment.RandomImageFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
 import androidx.paging.ExperimentalPagingApi
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
 @ExperimentalPagingApi
-class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
-    FragmentStateAdapter(fragmentActivity) {
+class ViewPagerAdapter(fragmentManager: FragmentManager, ifecycle: Lifecycle) :
+    FragmentStateAdapter(fragmentManager, ifecycle) {
+
     override fun getItemCount(): Int {
         return 2
     }
@@ -24,4 +27,5 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
             else -> return throw Throwable("Invalid position $position")
         }
     }
+
 }

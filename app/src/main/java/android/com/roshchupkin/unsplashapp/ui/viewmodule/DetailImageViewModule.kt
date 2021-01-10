@@ -4,8 +4,10 @@ package android.com.roshchupkin.unsplashapp.ui.viewmodule
 import android.com.roshchupkin.unsplashapp.model.ImageDomain
 import android.com.roshchupkin.unsplashapp.repository.DetailImageRepository
 import android.com.roshchupkin.unsplashapp.utill.DataState
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
@@ -21,9 +23,10 @@ constructor(private val detailImageRepository: DetailImageRepository) : ViewMode
 
     fun getImage(id: String) {
         viewModelScope.launch {
-            detailImageRepository.getImage(id).onEach { _dataState.value = it }
+            detailImageRepository.getImage(id).onEach { _dataState.value = it }.launchIn(viewModelScope)
         }
 
     }
+
 
 }

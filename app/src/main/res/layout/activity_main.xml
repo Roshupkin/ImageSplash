@@ -7,10 +7,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+   >
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -38,7 +35,8 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" >
+        </com.google.android.material.tabs.TabLayout>
 
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -50,17 +48,15 @@
          app:navGraph="@navigation/navgraph"
          android:layout_width="match_parent"
          android:layout_height="match_parent"
-
          tools:context=".ui.MainActivity" />-->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewpager_fragment_container"
+    <fragment
         tools:context=".ui.MainActivity"
+        android:id="@+id/fragment_container"
+        android:name="android.com.roshchupkin.unsplashapp.ui.MainNavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="android.com.roshchupkin.unsplashapp.ui.MainNavHostFragment"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/navgraph"
-         />
+        app:navGraph="@navigation/navgraph" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -8,6 +8,7 @@ import androidx.paging.ExperimentalPagingApi
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.viewpager_fragment.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @AndroidEntryPoint
@@ -17,16 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewpager_fragment_container.adapter = ViewPagerAdapter(this)
-        TabLayoutMediator(tab_layout, viewpager_fragment_container) { tab, position ->
-            when(position){
-                0->{
-                   tab.text = "Random Photo"
-                }
-                1->{
-                    tab.text = "Test Fragment"
-                }
-            }
-        }.attach()
+
+
     }
 }

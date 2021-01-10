@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/randomPhotoFragment"
-        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.RandomImageFragment"
-        android:label="RandomPhotoFragment"
-        tools:layout="@layout/fragment_random_photo">
+        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.ViewPagerFragment"
+        android:label="ViewPagerFragment"
+        tools:layout="@layout/viewpager_fragment">
         <action
             android:id="@+id/action_randomPhotoFragment_to_detailImageFragment"
             app:destination="@id/detailImageFragment" />
@@ -19,4 +19,5 @@
         android:name="android.com.roshchupkin.unsplashapp.ui.fragment.DetailImageFragment"
         android:label="DetailImageFragment"
         tools:layout="@layout/fragment_detail_image"/>
+    <action android:id="@+id/action_global_detailImageFragment" app:destination="@id/detailImageFragment" />
 </navigation>

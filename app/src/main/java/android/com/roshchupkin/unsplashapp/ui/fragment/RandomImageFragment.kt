@@ -72,8 +72,8 @@ constructor() : Fragment(R.layout.fragment_random_photo), PhotoAdapter.Interacti
 
 
     override fun onItemSelected(position: Int, item: RandomImageCacheEntity) {
-        val bundle = bundleOf("itemID" to item.id)
-        findNavController().navigate(R.id.detailImageFragment, bundle)
+       val bundle = bundleOf("itemID" to item.id)
+        findNavController().navigate(R.id.action_global_detailImageFragment, bundle)
     }
 
 
