@@ -11,4 +11,13 @@ interface UnsplashAPI {
     suspend fun getRandomImage(
         @Query("count") count: Int = 30
     ): List<RandomImageNetworkEntity>
+
+
+    @Headers("Accept-Version: v1", "Authorization: Client-ID BvAOjlA1CiId__0QwO7W68nQNcFlkaVlHT4MoRISKUE")
+    @GET("photos/:")
+    suspend fun getImageById(
+        @Query("id") id: String
+    ): RandomImageNetworkEntity
+
+
 }

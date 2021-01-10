@@ -4,10 +4,9 @@ package android.com.roshchupkin.unsplashapp.database.mapper
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
 import android.com.roshchupkin.unsplashapp.network.entity.RandomImageNetworkEntity
 import android.com.roshchupkin.unsplashapp.utill.EntityMapper
-import androidx.paging.PagingData
 import javax.inject.Inject
 
-class RandomImageCacheMapper
+class ImageCacheMapper
 @Inject
 constructor(
     private val urlsCacheMapper: UrlsCacheMapper,
@@ -21,8 +20,7 @@ constructor(
             height = domainModule.height,
             width = domainModule.width,
             urlsImageRegular = domainModule.urls?.regular,
-            username = domainModule.user?.username
-        )
+            username = domainModule.user?.username)
     }
 
     override fun mapFromEntity(entity: RandomImageCacheEntity): RandomImageNetworkEntity {

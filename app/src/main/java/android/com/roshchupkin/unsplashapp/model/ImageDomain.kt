@@ -3,7 +3,7 @@ package android.com.roshchupkin.unsplashapp.model
 import android.util.Log
 
 
-data class RandomImage(
+data class ImageDomain(
     val description: String?,
     val height: Int?,
     val id: String,

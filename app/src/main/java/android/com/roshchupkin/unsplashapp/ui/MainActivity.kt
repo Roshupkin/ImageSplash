@@ -1,6 +1,7 @@
 package android.com.roshchupkin.unsplashapp.ui
 
 import android.com.roshchupkin.unsplashapp.R
+import android.com.roshchupkin.unsplashapp.ui.adapters.ViewPagerAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.paging.ExperimentalPagingApi

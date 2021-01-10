@@ -19,4 +19,5 @@ data class RandomImageCacheEntity(
     val urlsImageRegular:String?,
     @SerializedName("username")
     val username:String?=null,
+
 )

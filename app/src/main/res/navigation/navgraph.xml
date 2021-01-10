@@ -9,5 +9,14 @@
         android:id="@+id/randomPhotoFragment"
         android:name="android.com.roshchupkin.unsplashapp.ui.fragment.RandomImageFragment"
         android:label="RandomPhotoFragment"
-        tools:layout="@layout/fragment_random_photo"/>
+        tools:layout="@layout/fragment_random_photo">
+        <action
+            android:id="@+id/action_randomPhotoFragment_to_detailImageFragment"
+            app:destination="@id/detailImageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailImageFragment"
+        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.DetailImageFragment"
+        android:label="DetailImageFragment"
+        tools:layout="@layout/fragment_detail_image"/>
 </navigation>

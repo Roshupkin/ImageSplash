@@ -1,12 +1,10 @@
-package android.com.roshchupkin.unsplashapp.ui.fragment
+package android.com.roshchupkin.unsplashapp.ui.adapters
 
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
 import android.com.roshchupkin.unsplashapp.databinding.ItemRandomPhotoBinding
-import android.com.roshchupkin.unsplashapp.network.entity.RandomImageNetworkEntity
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -81,11 +79,11 @@ class PhotoAdapter(private val interaction: Interaction? = null) :
                     .into(imageViewPhoto)
 
                 textViewUserName.text = image.username
-                textViewUserName.setOnClickListener {
-                    interaction?.onItemSelected(absoluteAdapterPosition, image)
-                }
                 textPositionOnAdapter.text = absoluteAdapterPosition.toString()
 
+                binding.root.setOnClickListener {
+                    interaction?.onItemSelected(absoluteAdapterPosition, image)
+                }
             }
         }
     }

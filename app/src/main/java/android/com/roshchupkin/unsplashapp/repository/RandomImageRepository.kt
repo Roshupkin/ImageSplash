@@ -2,7 +2,7 @@ package android.com.roshchupkin.unsplashapp.repository
 
 import android.com.roshchupkin.unsplashapp.database.dao.RandomImageDao
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
-import android.com.roshchupkin.unsplashapp.database.mapper.RandomImageCacheMapper
+import android.com.roshchupkin.unsplashapp.database.mapper.ImageCacheMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
 import android.util.Log
 import androidx.paging.*
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 class RandomImageRepository(
     private val unsplashAPI: UnsplashAPI,
     private val randomImageDao: RandomImageDao,
-    private val randomImageCacheMapper: RandomImageCacheMapper
+    private val imageCacheMapper: ImageCacheMapper
 ) {
 
 
@@ -25,15 +25,18 @@ class RandomImageRepository(
                 enablePlaceholders = true,
                 prefetchDistance =10,
                 initialLoadSize = 20
-
-
             ),
             remoteMediator = RandomPagingMediator(
                 unsplashAPI,
                 randomImageDao,
-                randomImageCacheMapper
+                imageCacheMapper
             ), pagingSourceFactory = pagingSource
         ).flow
+    }
+
+
+    suspend fun clearAllRandomImage(){
+        randomImageDao.clearAll()
     }
 
 

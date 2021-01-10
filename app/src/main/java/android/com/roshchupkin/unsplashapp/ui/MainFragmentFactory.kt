@@ -1,5 +1,6 @@
 package android.com.roshchupkin.unsplashapp.ui
 
+import android.com.roshchupkin.unsplashapp.ui.fragment.DetailImageFragment
 import android.com.roshchupkin.unsplashapp.ui.fragment.RandomImageFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
@@ -14,11 +15,14 @@ class MainFragmentFactory
     constructor(
     ):FragmentFactory() {
 
-
         override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
             return when (className) {
                 RandomImageFragment::class.java.name -> {
                     val fragment = RandomImageFragment()
+                    fragment
+                }
+               DetailImageFragment::class.java.name -> {
+                    val fragment = DetailImageFragment()
                     fragment
                 }
 

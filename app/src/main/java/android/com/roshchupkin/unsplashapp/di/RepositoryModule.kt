@@ -1,8 +1,10 @@
 package android.com.roshchupkin.unsplashapp.di
 
 import android.com.roshchupkin.unsplashapp.database.dao.RandomImageDao
-import android.com.roshchupkin.unsplashapp.database.mapper.RandomImageCacheMapper
+import android.com.roshchupkin.unsplashapp.database.mapper.ImageCacheMapper
+import android.com.roshchupkin.unsplashapp.network.mapper.ImageNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
+import android.com.roshchupkin.unsplashapp.repository.DetailImageRepository
 import android.com.roshchupkin.unsplashapp.repository.RandomImageRepository
 import androidx.paging.ExperimentalPagingApi
 import dagger.Module
@@ -19,13 +21,22 @@ object RepositoryModule {
     fun provideRundomPhotoRepository(
         unsplashAPI: UnsplashAPI,
         randomImageDao: RandomImageDao,
-        randomImageCacheMapper: RandomImageCacheMapper
+        imageCacheMapper: ImageCacheMapper
     ): RandomImageRepository =
         RandomImageRepository(
             unsplashAPI,
             randomImageDao,
-            randomImageCacheMapper
+            imageCacheMapper
         )
+
+    @Singleton
+    @Provides
+    fun provideImageByIdRepository(
+        unsplashAPI: UnsplashAPI,
+        imageNetworkMapper:ImageNetworkMapper
+
+    ):DetailImageRepository = DetailImageRepository(unsplashAPI,imageNetworkMapper)
+
 
 
 }

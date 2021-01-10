@@ -1,4 +1,4 @@
-package android.com.roshchupkin.unsplashapp.ui
+package android.com.roshchupkin.unsplashapp.ui.adapters
 
 import android.com.roshchupkin.unsplashapp.ui.fragment.FragmentTest
 import android.com.roshchupkin.unsplashapp.ui.fragment.RandomImageFragment
@@ -10,16 +10,18 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
 @ExperimentalPagingApi
-class ViewPagerAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapter(fragmentActivity) {
+class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
+    FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int {
         return 2
     }
 
 
     override fun createFragment(position: Int): Fragment {
-       when(position){
-           0-> return RandomImageFragment()
-           else->return FragmentTest()
-       }
+        when (position) {
+            0 -> return RandomImageFragment()
+            1 -> return FragmentTest()
+            else -> return throw Throwable("Invalid position $position")
+        }
     }
 }

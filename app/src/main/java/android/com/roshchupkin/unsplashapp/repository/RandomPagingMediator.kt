@@ -2,7 +2,7 @@ package android.com.roshchupkin.unsplashapp.repository
 
 import android.com.roshchupkin.unsplashapp.database.dao.RandomImageDao
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
-import android.com.roshchupkin.unsplashapp.database.mapper.RandomImageCacheMapper
+import android.com.roshchupkin.unsplashapp.database.mapper.ImageCacheMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
 import android.util.Log
 import androidx.paging.*
@@ -14,7 +14,7 @@ private const val UNSPLASH_STARTING_PAGE_INDEX = 1
 class RandomPagingMediator(
     private val unsplashAPI: UnsplashAPI,
     private val randomImageDao: RandomImageDao,
-    private val randomImageCacheMapper: RandomImageCacheMapper
+    private val imageCacheMapper: ImageCacheMapper
 ) :
     RemoteMediator<Int, RandomImageCacheEntity>() {
 
@@ -28,7 +28,7 @@ class RandomPagingMediator(
             Log.e("RAndomPagingMediator", "$listRandomImage")
 
 
-               val randomImageCache =  randomImageCacheMapper.mapToEntityList(listRandomImage)
+               val randomImageCache =  imageCacheMapper.mapToEntityList(listRandomImage)
                 randomImageDao.insertRandomImage(randomImageCache)
 
 

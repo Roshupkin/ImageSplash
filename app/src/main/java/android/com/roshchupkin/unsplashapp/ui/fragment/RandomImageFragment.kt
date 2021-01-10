@@ -3,30 +3,35 @@ package android.com.roshchupkin.unsplashapp.ui.fragment
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
 import android.com.roshchupkin.unsplashapp.databinding.FragmentRandomPhotoBinding
+import android.com.roshchupkin.unsplashapp.ui.adapters.PhotoAdapter
 import android.com.roshchupkin.unsplashapp.ui.viewmodule.RandomImageViewModule
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.core.view.isVisible
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.ExperimentalPagingApi
-import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
-
-
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 @ExperimentalPagingApi
 class RandomImageFragment
+@Inject
 constructor() : Fragment(R.layout.fragment_random_photo), PhotoAdapter.Interaction {
     private val randomImageViewModule: RandomImageViewModule by viewModels()
     lateinit var photoAdapter: PhotoAdapter
 
     private var _binding: FragmentRandomPhotoBinding? = null
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        randomImageViewModule.clearAllRandomImage()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,7 +72,8 @@ constructor() : Fragment(R.layout.fragment_random_photo), PhotoAdapter.Interacti
 
 
     override fun onItemSelected(position: Int, item: RandomImageCacheEntity) {
-        Toast.makeText(activity, "$position $item", Toast.LENGTH_SHORT).show()
+        val bundle = bundleOf("itemID" to item.id)
+        findNavController().navigate(R.id.detailImageFragment, bundle)
     }
 
 
