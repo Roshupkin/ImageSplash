@@ -1,4 +1,5 @@
-package android.com.roshchupkin.unsplashapp.network.entity
+package android.com.roshchupkin.unsplashapp.network.entity.image
+
 
 data class ImageNetworkEntity(
     val description: String?,

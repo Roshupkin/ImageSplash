@@ -1,6 +1,7 @@
 package android.com.roshchupkin.unsplashapp.ui.adapters
 
-import android.com.roshchupkin.unsplashapp.ui.fragment.FragmentTest
+
+import android.com.roshchupkin.unsplashapp.ui.fragment.CollectionFragment
 import android.com.roshchupkin.unsplashapp.ui.fragment.RandomImageFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -23,7 +24,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, ifecycle: Lifecycle) :
     override fun createFragment(position: Int): Fragment {
         when (position) {
             0 -> return RandomImageFragment()
-            1 -> return FragmentTest()
+            1 -> return CollectionFragment()
             else -> return throw Throwable("Invalid position $position")
         }
     }

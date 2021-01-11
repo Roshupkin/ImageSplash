@@ -2,7 +2,7 @@ package android.com.roshchupkin.unsplashapp.database.mapper
 
 
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
-import android.com.roshchupkin.unsplashapp.network.entity.RandomImageNetworkEntity
+import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
 import android.com.roshchupkin.unsplashapp.utill.EntityMapper
 import javax.inject.Inject
 
@@ -11,9 +11,9 @@ class ImageCacheMapper
 constructor(
     private val urlsCacheMapper: UrlsCacheMapper,
     private val userCacheMapper: UserCacheMapper
-) : EntityMapper<RandomImageCacheEntity, RandomImageNetworkEntity> {
+) : EntityMapper<RandomImageCacheEntity, ImageDomain> {
 
-    override fun mapToEntity(domainModule: RandomImageNetworkEntity): RandomImageCacheEntity {
+    override fun mapToEntity(domainModule: ImageDomain): RandomImageCacheEntity {
         return RandomImageCacheEntity(
             id = domainModule.id,
             description = domainModule.description,
@@ -23,8 +23,8 @@ constructor(
             username = domainModule.user?.username)
     }
 
-    override fun mapFromEntity(entity: RandomImageCacheEntity): RandomImageNetworkEntity {
-        return RandomImageNetworkEntity(
+    override fun mapFromEntity(entity: RandomImageCacheEntity): ImageDomain {
+        return ImageDomain(
             id = entity.id,
             description = entity.description,
             height = entity.height,
@@ -34,11 +34,11 @@ constructor(
         )
     }
 
-    fun mapToEntityList(domainModels: List<RandomImageNetworkEntity>): List<RandomImageCacheEntity> {
+    fun mapToEntityList(domainModels: List<ImageDomain>): List<RandomImageCacheEntity> {
         return domainModels.map { mapToEntity(it) }
     }
 
-    fun mapFromEntityList(entities: List<RandomImageCacheEntity>): List<RandomImageNetworkEntity> {
+    fun mapFromEntityList(entities: List<RandomImageCacheEntity>): List<ImageDomain> {
         return entities.map { mapFromEntity(it) }
     }
 }

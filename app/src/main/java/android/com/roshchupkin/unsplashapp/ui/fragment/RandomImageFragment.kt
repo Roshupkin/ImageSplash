@@ -4,7 +4,7 @@ import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
 import android.com.roshchupkin.unsplashapp.databinding.FragmentRandomPhotoBinding
 import android.com.roshchupkin.unsplashapp.ui.adapters.PhotoAdapter
-import android.com.roshchupkin.unsplashapp.ui.viewmodule.RandomImageViewModule
+import android.com.roshchupkin.unsplashapp.ui.viewmodule.RandomImageViewModel
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -22,7 +22,7 @@ import javax.inject.Inject
 class RandomImageFragment
 @Inject
 constructor() : Fragment(R.layout.fragment_random_photo), PhotoAdapter.Interaction {
-    private val randomImageViewModule: RandomImageViewModule by viewModels()
+    private val randomImageViewModel: RandomImageViewModel by viewModels()
     lateinit var photoAdapter: PhotoAdapter
 
     private var _binding: FragmentRandomPhotoBinding? = null
@@ -30,7 +30,7 @@ constructor() : Fragment(R.layout.fragment_random_photo), PhotoAdapter.Interacti
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        randomImageViewModule.clearAllRandomImage()
+        randomImageViewModel.clearAllRandomImage()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ constructor() : Fragment(R.layout.fragment_random_photo), PhotoAdapter.Interacti
 
         _binding = FragmentRandomPhotoBinding.bind(view)
 
-        randomImageViewModule.dataState.observe(viewLifecycleOwner) {
+        randomImageViewModel.dataState.observe(viewLifecycleOwner) {
             photoAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
         binding.apply {

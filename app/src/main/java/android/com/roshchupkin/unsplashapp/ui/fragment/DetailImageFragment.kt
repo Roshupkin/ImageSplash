@@ -2,11 +2,10 @@ package android.com.roshchupkin.unsplashapp.ui.fragment
 
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.databinding.FragmentDetailImageBinding
-import android.com.roshchupkin.unsplashapp.model.ImageDomain
-import android.com.roshchupkin.unsplashapp.ui.viewmodule.DetailImageViewModule
+import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
+import android.com.roshchupkin.unsplashapp.ui.viewmodule.DetailImageViewModel
 import android.com.roshchupkin.unsplashapp.utill.DataState
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -20,7 +19,7 @@ import javax.inject.Inject
 class DetailImageFragment
 @Inject
 constructor() : Fragment(R.layout.fragment_detail_image) {
-    private val viewModel: DetailImageViewModule by viewModels()
+    private val viewModel: DetailImageViewModel by viewModels()
 
     private var _binding: FragmentDetailImageBinding? = null
     private val binding get() = _binding

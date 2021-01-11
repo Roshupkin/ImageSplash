@@ -1,6 +1,4 @@
-package android.com.roshchupkin.unsplashapp.model
-
-import android.util.Log
+package android.com.roshchupkin.unsplashapp.model.Image
 
 
 data class ImageDomain(

@@ -1,11 +1,9 @@
 package android.com.roshchupkin.unsplashapp.repository
 
-import android.com.roshchupkin.unsplashapp.model.ImageDomain
-import android.com.roshchupkin.unsplashapp.network.entity.ImageNetworkEntity
+import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
 import android.com.roshchupkin.unsplashapp.network.mapper.ImageNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
 import android.com.roshchupkin.unsplashapp.utill.DataState
-import android.util.Log
 import com.bumptech.glide.load.HttpException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

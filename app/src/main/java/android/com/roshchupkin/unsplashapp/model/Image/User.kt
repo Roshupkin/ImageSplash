@@ -1,4 +1,4 @@
-package android.com.roshchupkin.unsplashapp.model
+package android.com.roshchupkin.unsplashapp.model.Image
 
 data class User(
     val name: String?,

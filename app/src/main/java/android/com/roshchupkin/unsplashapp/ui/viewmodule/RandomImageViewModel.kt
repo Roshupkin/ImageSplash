@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 @ExperimentalPagingApi
 @ExperimentalCoroutinesApi
-class RandomImageViewModule
+class RandomImageViewModel
 @ViewModelInject
 constructor(
     private val randomImageRepository: RandomImageRepository,

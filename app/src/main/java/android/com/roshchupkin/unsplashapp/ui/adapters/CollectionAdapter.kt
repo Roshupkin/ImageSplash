@@ -1,8 +1,8 @@
 package android.com.roshchupkin.unsplashapp.ui.adapters
 
 import android.com.roshchupkin.unsplashapp.R
-import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
-import android.com.roshchupkin.unsplashapp.databinding.ItemImageBinding
+import android.com.roshchupkin.unsplashapp.databinding.ItemCollectionImageBinding
+import android.com.roshchupkin.unsplashapp.model.collection.CollectionDomain
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -11,22 +11,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
-class PhotoAdapter(private val interaction: Interaction? = null) :
-    PagingDataAdapter<RandomImageCacheEntity, PhotoAdapter.PhotoViewHolder>(DIFF_CALLBACK) {
+class CollectionAdapter(private val interaction: Interaction? = null) :
+    PagingDataAdapter<CollectionDomain, CollectionAdapter.CollectionViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RandomImageCacheEntity>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CollectionDomain>() {
 
             override fun areItemsTheSame(
-                oldItem: RandomImageCacheEntity,
-                newItem: RandomImageCacheEntity
+                oldItem: CollectionDomain,
+                newItem: CollectionDomain
             ): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: RandomImageCacheEntity,
-                newItem: RandomImageCacheEntity
+                oldItem: CollectionDomain,
+                newItem: CollectionDomain
             ): Boolean {
                 return oldItem == newItem
             }
@@ -35,14 +35,14 @@ class PhotoAdapter(private val interaction: Interaction? = null) :
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionViewHolder {
         val binding =
-            ItemImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemCollectionImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return PhotoViewHolder(binding)
+        return CollectionViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CollectionViewHolder, position: Int) {
         val currentItem = getItem(position)
 
         if (currentItem != null) {
@@ -55,8 +55,8 @@ class PhotoAdapter(private val interaction: Interaction? = null) :
     }
 
 
-    inner class PhotoViewHolder(
-        private val binding: ItemImageBinding
+    inner class CollectionViewHolder(
+        private val binding: ItemCollectionImageBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -69,27 +69,30 @@ class PhotoAdapter(private val interaction: Interaction? = null) :
             }
         }
 
-        fun bind(image: RandomImageCacheEntity, interaction: Interaction?) {
+        fun bind(item: CollectionDomain, interaction: Interaction?) {
             binding.apply {
                 Glide.with(itemView)
-                    .load(image.urlsImageRegular)
+                    .load(item.coverPhoto?.urls?.regular)
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_error_loading_24)
                     .into(imageViewPhoto)
 
-                textViewUserName.text = image.username
+                textViewUserName.text = item.user?.username
                 textPositionOnAdapter.text = absoluteAdapterPosition.toString()
+                textTotalPhotos.text = item.totalPhotos.toString()
+                textTitleCollection.text = item.title
+
 
                 binding.root.setOnClickListener {
-                    interaction?.onItemSelected(absoluteAdapterPosition, image)
+                    interaction?.onItemSelected(absoluteAdapterPosition, item)
                 }
             }
         }
     }
 
     interface Interaction {
-        fun onItemSelected(position: Int, item: RandomImageCacheEntity)
+        fun onItemSelected(position: Int, item: CollectionDomain)
     }
 
 

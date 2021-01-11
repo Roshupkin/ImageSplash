@@ -3,9 +3,7 @@ package android.com.roshchupkin.unsplashapp.di
 import android.com.roshchupkin.unsplashapp.database.mapper.ImageCacheMapper
 import android.com.roshchupkin.unsplashapp.database.mapper.UrlsCacheMapper
 import android.com.roshchupkin.unsplashapp.database.mapper.UserCacheMapper
-import android.com.roshchupkin.unsplashapp.network.mapper.ImageNetworkMapper
-import android.com.roshchupkin.unsplashapp.network.mapper.UrlsNetworkMapper
-import android.com.roshchupkin.unsplashapp.network.mapper.UserNetworkMapper
+import android.com.roshchupkin.unsplashapp.network.mapper.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,6 +27,17 @@ object MapperModule {
         userNetworkMapper: UserNetworkMapper
     ): ImageNetworkMapper = ImageNetworkMapper(urlsNetworkMapper, userNetworkMapper)
 
+    @Singleton
+    @Provides
+    fun provideCoverPhotoNetworkMapper(
+        urlsNetworkMapper: UrlsNetworkMapper
+    ): CoverPhotoNetworkMapper = CoverPhotoNetworkMapper(urlsNetworkMapper)
 
+    @Singleton
+    @Provides
+    fun provideCollectionNetworkMapper(
+        coverPhotoNetworkMapper: CoverPhotoNetworkMapper,
+        userNetworkMapper: UserNetworkMapper
+    ): CollectionNetworkMapper = CollectionNetworkMapper(coverPhotoNetworkMapper, userNetworkMapper)
 
 }

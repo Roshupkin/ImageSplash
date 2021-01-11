@@ -1,7 +1,6 @@
 package android.com.roshchupkin.unsplashapp.database.dao
 
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
-import android.com.roshchupkin.unsplashapp.network.entity.RandomImageNetworkEntity
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert

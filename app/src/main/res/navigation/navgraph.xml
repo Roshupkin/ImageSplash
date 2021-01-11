@@ -9,7 +9,7 @@
         android:id="@+id/randomPhotoFragment"
         android:name="android.com.roshchupkin.unsplashapp.ui.fragment.ViewPagerFragment"
         android:label="ViewPagerFragment"
-        tools:layout="@layout/viewpager_fragment">
+        tools:layout="@layout/fragment_viewpager">
         <action
             android:id="@+id/action_randomPhotoFragment_to_detailImageFragment"
             app:destination="@id/detailImageFragment" />
