@@ -4,5 +4,5 @@ import android.com.roshchupkin.unsplashapp.network.entity.image.UrlsNetworkEntit
 import com.google.gson.annotations.SerializedName
 
 data class CoverPhotoNetworkEntity (
-    @SerializedName("urls") var urls : UrlsNetworkEntity?,
+   var urls : UrlsNetworkEntity?,
         )

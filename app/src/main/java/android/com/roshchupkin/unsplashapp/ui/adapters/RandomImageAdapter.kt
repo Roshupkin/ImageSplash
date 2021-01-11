@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
-class PhotoAdapter(private val interaction: Interaction? = null) :
-    PagingDataAdapter<RandomImageCacheEntity, PhotoAdapter.PhotoViewHolder>(DIFF_CALLBACK) {
+class RandomImageAdapter(private val interaction: Interaction? = null) :
+    PagingDataAdapter<RandomImageCacheEntity, RandomImageAdapter.PhotoViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RandomImageCacheEntity>() {

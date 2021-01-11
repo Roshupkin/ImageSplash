@@ -3,7 +3,7 @@ package android.com.roshchupkin.unsplashapp.ui.fragment
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
 import android.com.roshchupkin.unsplashapp.databinding.FragmentRandomPhotoBinding
-import android.com.roshchupkin.unsplashapp.ui.adapters.PhotoAdapter
+import android.com.roshchupkin.unsplashapp.ui.adapters.RandomImageAdapter
 import android.com.roshchupkin.unsplashapp.ui.viewmodule.RandomImageViewModel
 import android.os.Bundle
 import android.view.View
@@ -21,9 +21,9 @@ import javax.inject.Inject
 @ExperimentalPagingApi
 class RandomImageFragment
 @Inject
-constructor() : Fragment(R.layout.fragment_random_photo), PhotoAdapter.Interaction {
+constructor() : Fragment(R.layout.fragment_random_photo), RandomImageAdapter.Interaction {
     private val randomImageViewModel: RandomImageViewModel by viewModels()
-    lateinit var photoAdapter: PhotoAdapter
+    lateinit var randomImageAdapter: RandomImageAdapter
 
     private var _binding: FragmentRandomPhotoBinding? = null
     private val binding get() = _binding!!
@@ -39,12 +39,12 @@ constructor() : Fragment(R.layout.fragment_random_photo), PhotoAdapter.Interacti
         _binding = FragmentRandomPhotoBinding.bind(view)
 
         randomImageViewModel.dataState.observe(viewLifecycleOwner) {
-            photoAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+            randomImageAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
         binding.apply {
             recyclerView.apply {
-                photoAdapter = PhotoAdapter(this@RandomImageFragment)
-                adapter = photoAdapter
+                randomImageAdapter = RandomImageAdapter(this@RandomImageFragment)
+                adapter = randomImageAdapter
             }
         }
 

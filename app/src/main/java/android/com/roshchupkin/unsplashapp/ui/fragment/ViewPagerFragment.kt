@@ -18,8 +18,8 @@ class ViewPagerFragment : Fragment(R.layout.fragment_viewpager) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.viewpager.adapter = ViewPagerAdapter(
-            requireActivity().supportFragmentManager,
-            lifecycle)
+            childFragmentManager,
+            viewLifecycleOwner.lifecycle)
 
         TabLayoutMediator(
             requireActivity().tab_layout, view.viewpager

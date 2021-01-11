@@ -7,6 +7,7 @@ import android.com.roshchupkin.unsplashapp.network.mapper.ImageNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
 import android.com.roshchupkin.unsplashapp.repository.CollectionRepository
 import android.com.roshchupkin.unsplashapp.repository.DetailImageRepository
+import android.com.roshchupkin.unsplashapp.repository.ImageByCollectionRepository
 import android.com.roshchupkin.unsplashapp.repository.RandomImageRepository
 import androidx.paging.ExperimentalPagingApi
 import dagger.Module
@@ -50,4 +51,11 @@ object RepositoryModule {
 
     ): CollectionRepository = CollectionRepository(unsplashAPI, collectionNetworkMapper)
 
+    @Singleton
+    @Provides
+    fun provideImageByCollectionRepository(
+        unsplashAPI: UnsplashAPI,
+        imageNetworkMapper: ImageNetworkMapper
+
+    ): ImageByCollectionRepository = ImageByCollectionRepository(unsplashAPI, imageNetworkMapper)
 }

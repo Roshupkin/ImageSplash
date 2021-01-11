@@ -30,5 +30,12 @@ interface UnsplashAPI {
 
     ): List<CollectionNetworkEntity>
 
+    @Headers("Accept-Version: v1", "Authorization: Client-ID XXrCKFWKnVEBeZsoB7CdeX0kjAzwy4YHEirFDn2BFxo")
+    @GET("/collections/{id}/photos")
+    suspend fun getImageCollection(
+        @Path("id")id: Int,
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int
+    ): List<ImageNetworkEntity>
 
 }

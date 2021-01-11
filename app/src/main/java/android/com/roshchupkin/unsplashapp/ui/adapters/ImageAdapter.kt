@@ -2,8 +2,9 @@ package android.com.roshchupkin.unsplashapp.ui.adapters
 
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.databinding.ItemCollectionImageBinding
+import android.com.roshchupkin.unsplashapp.databinding.ItemImageBinding
+import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
 import android.com.roshchupkin.unsplashapp.model.collection.CollectionDomain
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -12,22 +13,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
-class CollectionAdapter(private val interaction: Interaction? = null) :
-    PagingDataAdapter<CollectionDomain, CollectionAdapter.CollectionViewHolder>(DIFF_CALLBACK) {
+class ImageAdapter(private val interaction: Interaction? = null) :
+PagingDataAdapter<ImageDomain, ImageAdapter.ImageViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CollectionDomain>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ImageDomain>() {
 
             override fun areItemsTheSame(
-                oldItem: CollectionDomain,
-                newItem: CollectionDomain
+                oldItem: ImageDomain,
+                newItem: ImageDomain
             ): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: CollectionDomain,
-                newItem: CollectionDomain
+                oldItem: ImageDomain,
+                newItem: ImageDomain
             ): Boolean {
                 return oldItem == newItem
             }
@@ -36,14 +37,14 @@ class CollectionAdapter(private val interaction: Interaction? = null) :
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val binding =
-            ItemCollectionImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return CollectionViewHolder(binding)
+        return ImageViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: CollectionViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val currentItem = getItem(position)
 
         if (currentItem != null) {
@@ -56,29 +57,19 @@ class CollectionAdapter(private val interaction: Interaction? = null) :
     }
 
 
-    inner class CollectionViewHolder(
-        private val binding: ItemCollectionImageBinding
+    inner class ImageViewHolder(
+        private val binding: ItemImageBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        init {
-            binding.root.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-
-                }
-            }
-        }
-
-        fun bind(item: CollectionDomain, interaction: Interaction?) {
+        fun bind(item: ImageDomain, interaction: Interaction?) {
             binding.apply {
                 Glide.with(itemView)
-                    .load(item.coverPhoto?.urls?.regular)
+                    .load(item.urls?.regular)
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_error_loading_24)
                     .into(imageViewPhoto)
-
 
                 Glide.with(itemView)
                     .load(item.user?.profile_image?.small)
@@ -89,8 +80,7 @@ class CollectionAdapter(private val interaction: Interaction? = null) :
 
                 textViewUserName.text = item.user?.username
                 textPositionOnAdapter.text = absoluteAdapterPosition.toString()
-                textTotalPhotos.text = item.totalPhotos.toString()
-                textTitleCollection.text = item.title
+
 
 
                 binding.root.setOnClickListener {
@@ -101,7 +91,7 @@ class CollectionAdapter(private val interaction: Interaction? = null) :
     }
 
     interface Interaction {
-        fun onItemSelected(position: Int, item: CollectionDomain)
+        fun onItemSelected(position: Int, item: ImageDomain)
     }
 
 

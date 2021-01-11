@@ -6,9 +6,12 @@ import android.com.roshchupkin.unsplashapp.model.collection.CollectionDomain
 import android.com.roshchupkin.unsplashapp.ui.adapters.CollectionAdapter
 import android.com.roshchupkin.unsplashapp.ui.viewmodule.CollectionViewModel
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,6 +36,7 @@ class CollectionFragment: Fragment(R.layout.fragment_collection), CollectionAdap
     }
 
     override fun onItemSelected(position: Int, item: CollectionDomain) {
-        TODO("Not yet implemented")
+        val bundle = bundleOf("itemIdCollection" to item.id)
+        findNavController().navigate(R.id.action_global_imageFragment, bundle)
     }
 }
