@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class UserCacheMapper
 @Inject
-constructor():EntityMapper<RandomImageCacheEntity, User>{
+constructor(private val profileImageCacheMapper: ProfileImageCacheMapper):EntityMapper<RandomImageCacheEntity, User>{
     override fun mapToEntity(domainModule: User): RandomImageCacheEntity {
         TODO("Not yet implemented")
     }
@@ -15,7 +15,8 @@ constructor():EntityMapper<RandomImageCacheEntity, User>{
     override fun mapFromEntity(entity: RandomImageCacheEntity): User {
         return User(
             name = null,
-            username = entity.username
+            username = entity.username,
+            profile_image = profileImageCacheMapper.mapFromEntity(entity)
         )
     }
 }

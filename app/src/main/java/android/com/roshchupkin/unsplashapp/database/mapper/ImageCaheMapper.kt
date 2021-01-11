@@ -20,7 +20,9 @@ constructor(
             height = domainModule.height,
             width = domainModule.width,
             urlsImageRegular = domainModule.urls?.regular,
-            username = domainModule.user?.username)
+            username = domainModule.user?.username,
+            profileImageSmall = domainModule.user?.profile_image?.small
+        )
     }
 
     override fun mapFromEntity(entity: RandomImageCacheEntity): ImageDomain {

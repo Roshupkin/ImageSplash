@@ -78,6 +78,13 @@ class PhotoAdapter(private val interaction: Interaction? = null) :
                     .error(R.drawable.ic_error_loading_24)
                     .into(imageViewPhoto)
 
+                Glide.with(itemView)
+                    .load(image.profileImageSmall)
+                    .centerCrop()
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .error(R.drawable.ic_error_loading_24)
+                    .into(imageViewUserProfile)
+
                 textViewUserName.text = image.username
                 textPositionOnAdapter.text = absoluteAdapterPosition.toString()
 

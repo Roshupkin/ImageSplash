@@ -78,6 +78,13 @@ class CollectionAdapter(private val interaction: Interaction? = null) :
                     .error(R.drawable.ic_error_loading_24)
                     .into(imageViewPhoto)
 
+                Glide.with(itemView)
+                    .load(item.user?.profile_image?.small)
+                    .centerCrop()
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .error(R.drawable.ic_error_loading_24)
+                    .into(imageViewUserProfile)
+
                 textViewUserName.text = item.user?.username
                 textPositionOnAdapter.text = absoluteAdapterPosition.toString()
                 textTotalPhotos.text = item.totalPhotos.toString()

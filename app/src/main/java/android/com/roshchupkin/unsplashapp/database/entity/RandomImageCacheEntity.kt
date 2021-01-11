@@ -10,14 +10,16 @@ data class RandomImageCacheEntity(
     @SerializedName("id")
     val id: String,
     @SerializedName("description")
-    val description: String?=null,
+    val description: String?,
     @SerializedName("height")
-    val height: Int?=null,
+    val height: Int?,
     @SerializedName("width")
     val width: Int?,
     @SerializedName("urlsImageRegular")
     val urlsImageRegular:String?,
     @SerializedName("username")
-    val username:String?=null,
+    val username:String?,
+    @SerializedName("profileImageSmall")
+    var profileImageSmall: String?
 
 )

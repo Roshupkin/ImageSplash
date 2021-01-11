@@ -1,6 +1,7 @@
 package android.com.roshchupkin.unsplashapp.di
 
 import android.com.roshchupkin.unsplashapp.database.mapper.ImageCacheMapper
+import android.com.roshchupkin.unsplashapp.database.mapper.ProfileImageCacheMapper
 import android.com.roshchupkin.unsplashapp.database.mapper.UrlsCacheMapper
 import android.com.roshchupkin.unsplashapp.database.mapper.UserCacheMapper
 import android.com.roshchupkin.unsplashapp.network.mapper.*
@@ -39,5 +40,17 @@ object MapperModule {
         coverPhotoNetworkMapper: CoverPhotoNetworkMapper,
         userNetworkMapper: UserNetworkMapper
     ): CollectionNetworkMapper = CollectionNetworkMapper(coverPhotoNetworkMapper, userNetworkMapper)
+
+    @Singleton
+    @Provides
+    fun provideUserNetworkMapper(
+        profileImageNetworkMapper: ProfileImageNetworkMapper
+    ): UserNetworkMapper = UserNetworkMapper(profileImageNetworkMapper)
+
+    @Singleton
+    @Provides
+    fun provideUserCacheMapper(
+        profileImageCacheMapper: ProfileImageCacheMapper
+    ): UserCacheMapper = UserCacheMapper(profileImageCacheMapper)
 
 }

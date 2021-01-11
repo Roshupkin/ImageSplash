@@ -6,18 +6,23 @@ import android.com.roshchupkin.unsplashapp.utill.EntityMapper
 import javax.inject.Inject
 
 class UserNetworkMapper @Inject
-constructor(): EntityMapper<UserNetworkEntity, User> {
+constructor(private val profileImageNetworkMapper: ProfileImageNetworkMapper) :
+    EntityMapper<UserNetworkEntity, User> {
     override fun mapToEntity(domainModule: User): UserNetworkEntity {
         return UserNetworkEntity(
             name = domainModule.name,
-            username = domainModule.username
+            username = domainModule.username,
+            profile_image = domainModule.profile_image?.let {
+                profileImageNetworkMapper.mapToEntity(it)
+            }
         )
     }
 
     override fun mapFromEntity(entity: UserNetworkEntity): User {
         return User(
             name = entity.name,
-            username = entity.username
+            username = entity.username,
+            profile_image = entity.profile_image?.let { profileImageNetworkMapper.mapFromEntity(it) }
         )
     }
 }
