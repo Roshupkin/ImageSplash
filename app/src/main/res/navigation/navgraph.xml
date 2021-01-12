@@ -3,35 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
-    app:startDestination="@id/randomPhotoFragment">
+    app:startDestination="@id/viewPagerFragment">
 
     <fragment
-        android:id="@+id/randomPhotoFragment"
+        android:id="@+id/viewPagerFragment"
         android:name="android.com.roshchupkin.unsplashapp.ui.fragment.ViewPagerFragment"
         android:label="ViewPagerFragment"
         tools:layout="@layout/fragment_viewpager">
         <action
             android:id="@+id/action_randomPhotoFragment_to_detailImageFragment"
             app:destination="@id/detailImageFragment" />
+        <action
+            android:id="@+id/action_collectionsFragment_to_imageFragment"
+            app:destination="@id/imageFragment" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_searchImageFragment"
+            app:destination="@id/searchImageFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailImageFragment"
         android:name="android.com.roshchupkin.unsplashapp.ui.fragment.DetailImageFragment"
         android:label="DetailImageFragment"
         tools:layout="@layout/fragment_detail_image"/>
-    <action android:id="@+id/action_global_detailImageFragment" app:destination="@id/detailImageFragment" />
-    <fragment
-        tools:layout="@layout/fragment_collection"
-        android:id="@+id/collectionFragment"
-        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.CollectionFragment"
-        android:label="CollectionFragment" >
-        <action
-            android:id="@+id/action_collectionFragment_to_imageFragment"
-            app:destination="@id/imageFragment" />
-    </fragment>
     <fragment
         tools:layout="@layout/fragment_image"
         android:id="@+id/imageFragment"
         android:name="android.com.roshchupkin.unsplashapp.ui.fragment.ImageFragment"
-        android:label="ImageFragment" /><action android:id="@+id/action_global_imageFragment" app:destination="@id/imageFragment"/>
+        android:label="ImageFragment" >
+        <action
+            android:id="@+id/action_imageFragment_to_detailImageFragment"
+            app:destination="@id/detailImageFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_search_image"
+        android:id="@+id/searchImageFragment"
+        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.SearchImageFragment"
+        android:label="SearchImageFragment" />
 </navigation>

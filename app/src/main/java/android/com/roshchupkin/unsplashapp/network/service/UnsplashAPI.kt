@@ -1,5 +1,6 @@
 package android.com.roshchupkin.unsplashapp.network.service
 
+import android.com.roshchupkin.unsplashapp.network.entity.SearchImagesNetworkEntity
 import android.com.roshchupkin.unsplashapp.network.entity.collection.CollectionNetworkEntity
 import android.com.roshchupkin.unsplashapp.network.entity.image.ImageNetworkEntity
 import android.com.roshchupkin.unsplashapp.network.mapper.CollectionNetworkMapper
@@ -12,7 +13,7 @@ interface UnsplashAPI {
     @Headers("Accept-Version: v1", "Authorization: Client-ID XXrCKFWKnVEBeZsoB7CdeX0kjAzwy4YHEirFDn2BFxo")
     @GET("photos/random")
     suspend fun getRandomImage(
-        @Query("count") count: Int = 30
+        @Query("count") count: Int
     ): List<ImageNetworkEntity>
 
 
@@ -38,4 +39,11 @@ interface UnsplashAPI {
         @Query("per_page") perPage: Int
     ): List<ImageNetworkEntity>
 
+    @Headers("Accept-Version: v1", "Authorization: Client-ID XXrCKFWKnVEBeZsoB7CdeX0kjAzwy4YHEirFDn2BFxo")
+    @GET("/search/photos")
+    suspend fun searchImage(
+        @Query("query") query: String,
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int
+    ): SearchImagesNetworkEntity
 }

@@ -3,8 +3,10 @@ package android.com.roshchupkin.unsplashapp.ui.fragment
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.databinding.FragmentDetailImageBinding
 import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
-import android.com.roshchupkin.unsplashapp.ui.viewmodule.DetailImageViewModel
+import android.com.roshchupkin.unsplashapp.ui.viewmodel.DetailImageViewModel
 import android.com.roshchupkin.unsplashapp.utill.DataState
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -53,7 +55,16 @@ constructor() : Fragment(R.layout.fragment_detail_image) {
                         textSetHeight.text = dataState.data.height.toString()
                         textSetWidth.text = dataState.data.width.toString()
                         textSetDescription.text = dataState.data.description
-                        textSetLink.text = dataState.data.urls?.regular
+
+
+                        val uri = Uri.parse(dataState.data.urls?.regular)
+                        val intent = Intent(Intent.ACTION_VIEW, uri)
+                        textSetLink.apply {
+                            text = dataState.data.urls?.regular
+                            setOnClickListener {
+                                context.startActivity(intent)
+                            }
+                        }
                     }
                 }
                 is DataState.Loading -> {

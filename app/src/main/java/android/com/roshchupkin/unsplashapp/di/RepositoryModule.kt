@@ -4,11 +4,9 @@ import android.com.roshchupkin.unsplashapp.database.dao.RandomImageDao
 import android.com.roshchupkin.unsplashapp.database.mapper.ImageCacheMapper
 import android.com.roshchupkin.unsplashapp.network.mapper.CollectionNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.mapper.ImageNetworkMapper
+import android.com.roshchupkin.unsplashapp.network.mapper.SearchImagesNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
-import android.com.roshchupkin.unsplashapp.repository.CollectionRepository
-import android.com.roshchupkin.unsplashapp.repository.DetailImageRepository
-import android.com.roshchupkin.unsplashapp.repository.ImageByCollectionRepository
-import android.com.roshchupkin.unsplashapp.repository.RandomImageRepository
+import android.com.roshchupkin.unsplashapp.repository.*
 import androidx.paging.ExperimentalPagingApi
 import dagger.Module
 import dagger.Provides
@@ -46,8 +44,8 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideCollectionRepository(
-         unsplashAPI: UnsplashAPI,
-         collectionNetworkMapper: CollectionNetworkMapper
+        unsplashAPI: UnsplashAPI,
+        collectionNetworkMapper: CollectionNetworkMapper
 
     ): CollectionRepository = CollectionRepository(unsplashAPI, collectionNetworkMapper)
 
@@ -58,4 +56,11 @@ object RepositoryModule {
         imageNetworkMapper: ImageNetworkMapper
 
     ): ImageByCollectionRepository = ImageByCollectionRepository(unsplashAPI, imageNetworkMapper)
+
+    @Singleton
+    @Provides
+    fun provideSearchImageRepository(
+        unsplashAPI: UnsplashAPI,
+       searchImagesNetworkMapper: SearchImagesNetworkMapper
+    ): SearchImageRepository = SearchImageRepository(unsplashAPI, searchImagesNetworkMapper)
 }

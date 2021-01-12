@@ -53,4 +53,9 @@ object MapperModule {
         profileImageCacheMapper: ProfileImageCacheMapper
     ): UserCacheMapper = UserCacheMapper(profileImageCacheMapper)
 
+    @Singleton
+    @Provides
+    fun provideSearchImagesMapper(
+        imageNetworkMapper: ImageNetworkMapper
+    ): SearchImagesNetworkMapper = SearchImagesNetworkMapper(imageNetworkMapper)
 }

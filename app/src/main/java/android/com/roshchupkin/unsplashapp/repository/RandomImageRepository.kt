@@ -20,7 +20,6 @@ class RandomImageRepository(
 
     fun getRandomPhoto(): Flow<PagingData<RandomImageCacheEntity>> {
         val pagingSource = { randomImageDao.getRandomImage() }
-        Log.e("RandomImageDao", "${pagingSource}")
         return Pager(
             config = PagingConfig(
                 pageSize = 10,

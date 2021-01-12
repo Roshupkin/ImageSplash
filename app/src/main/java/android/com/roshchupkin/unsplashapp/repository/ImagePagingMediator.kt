@@ -9,7 +9,7 @@ import android.util.Log
 import androidx.paging.*
 import java.io.IOException
 
-
+private const val COUNT = 30
 @ExperimentalPagingApi
 class ImagePagingMediator(
     private val unsplashAPI: UnsplashAPI,
@@ -25,7 +25,7 @@ class ImagePagingMediator(
     ): MediatorResult {
 
         try {
-            val listRandomImage = unsplashAPI.getRandomImage()
+            val listRandomImage = unsplashAPI.getRandomImage(COUNT)
             val domainListRandomImage = imageNetworkMapper.mapFromEntityList(listRandomImage)
             val randomImageCache = imageCacheMapper.mapToEntityList(domainListRandomImage)
             randomImageDao.insertRandomImage(randomImageCache)

@@ -4,21 +4,21 @@ import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.databinding.FragmentImageBinding
 import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
 import android.com.roshchupkin.unsplashapp.ui.adapters.ImageAdapter
-import android.com.roshchupkin.unsplashapp.ui.viewmodel.ListOfImagesViewModel
+import android.com.roshchupkin.unsplashapp.ui.viewmodel.SearchImageViewModel
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
-class ImageFragment
-@Inject
-constructor() : Fragment(R.layout.fragment_image), ImageAdapter.Interaction {
-    private val imageListViewModel: ListOfImagesViewModel by viewModels()
+class SearchImageFragment : Fragment(R.layout.fragment_image), ImageAdapter.Interaction {
+
+    private val searchImageViewModel: SearchImageViewModel by viewModels()
     lateinit var imageAdapter: ImageAdapter
 
     private var _binding: FragmentImageBinding? = null
@@ -28,17 +28,22 @@ constructor() : Fragment(R.layout.fragment_image), ImageAdapter.Interaction {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentImageBinding.bind(view)
 
-        val idCollection: Int = this.arguments?.getInt("itemIdCollection") ?: 22
+        val queryString: String = this.arguments?.getString("queryString").toString()
 
-        imageListViewModel.getImageList(idCollection).observe(viewLifecycleOwner) {
-            imageAdapter.submitData(viewLifecycleOwner.lifecycle, it)
-        }
         binding.apply {
             recyclerView.apply {
-                imageAdapter = ImageAdapter(this@ImageFragment)
+                imageAdapter = ImageAdapter(this@SearchImageFragment)
                 adapter = imageAdapter
+                scrollToPosition(0)
+            }
+            searchImageViewModel.getImageList(queryString).observe(viewLifecycleOwner) {
+                imageAdapter.submitData(viewLifecycleOwner.lifecycle, it)
             }
         }
+
+
+
+
     }
 
     override fun onItemSelected(position: Int, item: ImageDomain) {

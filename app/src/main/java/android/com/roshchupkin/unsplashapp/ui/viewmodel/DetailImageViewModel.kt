@@ -1,4 +1,4 @@
-package android.com.roshchupkin.unsplashapp.ui.viewmodule
+package android.com.roshchupkin.unsplashapp.ui.viewmodel
 
 
 import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain

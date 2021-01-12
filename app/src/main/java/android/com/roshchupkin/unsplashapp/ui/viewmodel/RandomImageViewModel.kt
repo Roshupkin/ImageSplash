@@ -1,4 +1,4 @@
-package android.com.roshchupkin.unsplashapp.ui.viewmodule
+package android.com.roshchupkin.unsplashapp.ui.viewmodel
 
 import android.com.roshchupkin.unsplashapp.repository.RandomImageRepository
 import androidx.hilt.Assisted
@@ -17,9 +17,18 @@ constructor(
     private val randomImageRepository: RandomImageRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+
     var dataState = randomImageRepository.getRandomPhoto().cachedIn(viewModelScope).asLiveData()
+
+
 
     fun clearAllRandomImage() {
         viewModelScope.launch { randomImageRepository.clearAllRandomImage() }
+    }
+
+    companion object {
+        private const val CURRENT_QUERY = "current_query"
+        private const val DEFAULT_QUERY = "cats"
     }
 }

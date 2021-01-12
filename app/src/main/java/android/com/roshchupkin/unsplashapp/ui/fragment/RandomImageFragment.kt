@@ -4,15 +4,17 @@ import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
 import android.com.roshchupkin.unsplashapp.databinding.FragmentRandomPhotoBinding
 import android.com.roshchupkin.unsplashapp.ui.adapters.RandomImageAdapter
-import android.com.roshchupkin.unsplashapp.ui.viewmodule.RandomImageViewModel
+import android.com.roshchupkin.unsplashapp.ui.viewmodel.RandomImageViewModel
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.paging.ExperimentalPagingApi
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
@@ -48,6 +50,7 @@ constructor() : Fragment(R.layout.fragment_random_photo), RandomImageAdapter.Int
             }
         }
 
+
       /*  photoAdapter.addLoadStateListener { loadState ->
             binding.apply {
                 progressBar.isVisible = loadState.source.refresh is LoadState.Loading
@@ -73,7 +76,7 @@ constructor() : Fragment(R.layout.fragment_random_photo), RandomImageAdapter.Int
 
     override fun onItemSelected(position: Int, item: RandomImageCacheEntity) {
        val bundle = bundleOf("itemID" to item.id)
-        findNavController().navigate(R.id.action_global_detailImageFragment, bundle)
+        findNavController().navigate(R.id.action_randomPhotoFragment_to_detailImageFragment, bundle)
     }
 
 
