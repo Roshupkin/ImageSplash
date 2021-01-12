@@ -1,4 +1,4 @@
-package android.com.roshchupkin.unsplashapp.repository
+package android.com.roshchupkin.unsplashapp.repository.collection
 
 import android.com.roshchupkin.unsplashapp.network.mapper.CollectionNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI

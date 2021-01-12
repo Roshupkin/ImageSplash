@@ -1,9 +1,9 @@
 package android.com.roshchupkin.unsplashapp.network.service
 
 import android.com.roshchupkin.unsplashapp.network.entity.SearchImagesNetworkEntity
-import android.com.roshchupkin.unsplashapp.network.entity.collection.CollectionNetworkEntity
-import android.com.roshchupkin.unsplashapp.network.entity.image.ImageNetworkEntity
-import android.com.roshchupkin.unsplashapp.network.mapper.CollectionNetworkMapper
+import android.com.roshchupkin.unsplashapp.network.entity.CollectionNetworkEntity
+import android.com.roshchupkin.unsplashapp.network.entity.ImageNetworkEntity
+import android.com.roshchupkin.unsplashapp.repository.collection.image.ImageByCollectionRepository
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
@@ -33,7 +33,7 @@ interface UnsplashAPI {
 
     @Headers("Accept-Version: v1", "Authorization: Client-ID XXrCKFWKnVEBeZsoB7CdeX0kjAzwy4YHEirFDn2BFxo")
     @GET("/collections/{id}/photos")
-    suspend fun getImageCollection(
+    suspend fun getImagesByCollection(
         @Path("id")id: Int,
         @Query("page") page: Int,
         @Query("per_page") perPage: Int

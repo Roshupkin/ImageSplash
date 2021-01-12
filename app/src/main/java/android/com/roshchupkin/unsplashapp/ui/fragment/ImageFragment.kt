@@ -2,8 +2,9 @@ package android.com.roshchupkin.unsplashapp.ui.fragment
 
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.databinding.FragmentImageBinding
-import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
+import android.com.roshchupkin.unsplashapp.model.ImageDomain
 import android.com.roshchupkin.unsplashapp.ui.adapters.ImageAdapter
+import android.com.roshchupkin.unsplashapp.ui.adapters.ImageLoadStateAdapter
 import android.com.roshchupkin.unsplashapp.ui.viewmodel.ListOfImagesViewModel
 import android.os.Bundle
 import android.view.View
@@ -36,7 +37,10 @@ constructor() : Fragment(R.layout.fragment_image), ImageAdapter.Interaction {
         binding.apply {
             recyclerView.apply {
                 imageAdapter = ImageAdapter(this@ImageFragment)
-                adapter = imageAdapter
+                adapter = imageAdapter.withLoadStateHeaderAndFooter(
+                    header = ImageLoadStateAdapter { imageAdapter.retry() },
+                    footer = ImageLoadStateAdapter { imageAdapter.retry() }
+                )
             }
         }
     }

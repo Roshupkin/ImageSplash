@@ -7,6 +7,10 @@ import android.com.roshchupkin.unsplashapp.network.mapper.ImageNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.mapper.SearchImagesNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
 import android.com.roshchupkin.unsplashapp.repository.*
+import android.com.roshchupkin.unsplashapp.repository.collection.CollectionRepository
+import android.com.roshchupkin.unsplashapp.repository.collection.image.ImageByCollectionRepository
+import android.com.roshchupkin.unsplashapp.repository.random.RandomImageRepository
+import android.com.roshchupkin.unsplashapp.repository.search.SearchImageRepository
 import androidx.paging.ExperimentalPagingApi
 import dagger.Module
 import dagger.Provides

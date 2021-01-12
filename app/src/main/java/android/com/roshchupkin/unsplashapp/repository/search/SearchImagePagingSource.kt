@@ -1,6 +1,6 @@
-package android.com.roshchupkin.unsplashapp.repository
+package android.com.roshchupkin.unsplashapp.repository.search
 
-import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
+import android.com.roshchupkin.unsplashapp.model.ImageDomain
 import android.com.roshchupkin.unsplashapp.network.mapper.SearchImagesNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
 import android.util.Log
@@ -20,8 +20,8 @@ class SearchImagePagingSource(
         val position = params.key ?: STARTING_PAGE_INDEX
         return try {
             Log.e("LOADING","${params.loadSize}")
-            val response = unsplashAPI.searchImage(queryString,position,params.loadSize )
-            val images = searchImagesNetworkMapper.mapFromEntity(response)
+            val searchResponse = unsplashAPI.searchImage(queryString,position,params.loadSize)/*.response*/
+            val images = searchImagesNetworkMapper.mapFromEntity(searchResponse)
 
             LoadResult.Page(
                 data = images.results,

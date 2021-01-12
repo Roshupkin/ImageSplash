@@ -1,4 +1,4 @@
-package android.com.roshchupkin.unsplashapp.network.entity.image
+package android.com.roshchupkin.unsplashapp.network.entity
 
 data class UrlsNetworkEntity(
     val full: String?=null,

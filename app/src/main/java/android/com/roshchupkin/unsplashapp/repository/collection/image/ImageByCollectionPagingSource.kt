@@ -1,8 +1,6 @@
-package android.com.roshchupkin.unsplashapp.repository
+package android.com.roshchupkin.unsplashapp.repository.collection.image
 
-import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
-import android.com.roshchupkin.unsplashapp.model.collection.CollectionDomain
-import android.com.roshchupkin.unsplashapp.network.mapper.CollectionNetworkMapper
+import android.com.roshchupkin.unsplashapp.model.ImageDomain
 import android.com.roshchupkin.unsplashapp.network.mapper.ImageNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
 import androidx.paging.PagingSource
@@ -18,8 +16,8 @@ class ImageByCollectionPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ImageDomain> {
         val position = params.key ?: STARTING_PAGE_INDEX
         return try {
-            val response = unsplashAPI.getImageCollection(imageListId,position,params.loadSize)
-            val images = imageNetworkMapper.mapFromEntityList(response)
+            val responseImageByCollection = unsplashAPI.getImagesByCollection(imageListId,position,params.loadSize)/*.response*/
+            val images = imageNetworkMapper.mapFromEntityList(responseImageByCollection)
 
             LoadResult.Page(
                 data = images,

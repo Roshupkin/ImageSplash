@@ -1,7 +1,7 @@
 package android.com.roshchupkin.unsplashapp.network.mapper
 
-import android.com.roshchupkin.unsplashapp.model.collection.CoverPhoto
-import android.com.roshchupkin.unsplashapp.network.entity.collection.CoverPhotoNetworkEntity
+import android.com.roshchupkin.unsplashapp.model.CoverPhoto
+import android.com.roshchupkin.unsplashapp.network.entity.CoverPhotoNetworkEntity
 import android.com.roshchupkin.unsplashapp.utill.EntityMapper
 import javax.inject.Inject
 

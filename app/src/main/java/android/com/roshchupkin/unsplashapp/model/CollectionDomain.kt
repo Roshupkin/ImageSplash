@@ -1,6 +1,4 @@
-package android.com.roshchupkin.unsplashapp.model.collection
-
-import android.com.roshchupkin.unsplashapp.model.Image.User
+package android.com.roshchupkin.unsplashapp.model
 
 data class CollectionDomain(
     var id: Int?,

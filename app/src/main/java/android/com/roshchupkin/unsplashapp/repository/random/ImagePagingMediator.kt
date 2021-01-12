@@ -1,4 +1,4 @@
-package android.com.roshchupkin.unsplashapp.repository
+package android.com.roshchupkin.unsplashapp.repository.random
 
 import android.com.roshchupkin.unsplashapp.database.dao.RandomImageDao
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
@@ -25,7 +25,8 @@ class ImagePagingMediator(
     ): MediatorResult {
 
         try {
-            val listRandomImage = unsplashAPI.getRandomImage(COUNT)
+            val randomImageResponse = unsplashAPI.getRandomImage(COUNT)
+            val listRandomImage = randomImageResponse/*.response*/
             val domainListRandomImage = imageNetworkMapper.mapFromEntityList(listRandomImage)
             val randomImageCache = imageCacheMapper.mapToEntityList(domainListRandomImage)
             randomImageDao.insertRandomImage(randomImageCache)

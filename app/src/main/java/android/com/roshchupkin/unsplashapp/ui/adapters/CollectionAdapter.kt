@@ -2,8 +2,7 @@ package android.com.roshchupkin.unsplashapp.ui.adapters
 
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.databinding.ItemCollectionImageBinding
-import android.com.roshchupkin.unsplashapp.model.collection.CollectionDomain
-import android.util.Log
+import android.com.roshchupkin.unsplashapp.model.CollectionDomain
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter

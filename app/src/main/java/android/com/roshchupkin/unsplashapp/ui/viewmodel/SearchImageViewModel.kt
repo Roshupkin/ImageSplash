@@ -1,14 +1,11 @@
 package android.com.roshchupkin.unsplashapp.ui.viewmodel
 
-import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
-import android.com.roshchupkin.unsplashapp.repository.ImageByCollectionRepository
-import android.com.roshchupkin.unsplashapp.repository.SearchImageRepository
+import android.com.roshchupkin.unsplashapp.model.ImageDomain
+import android.com.roshchupkin.unsplashapp.repository.search.SearchImageRepository
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import androidx.paging.cachedIn
 
 class SearchImageViewModel
 @ViewModelInject

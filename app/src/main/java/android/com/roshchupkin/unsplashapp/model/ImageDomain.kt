@@ -1,4 +1,4 @@
-package android.com.roshchupkin.unsplashapp.model.Image
+package android.com.roshchupkin.unsplashapp.model
 
 
 data class ImageDomain(

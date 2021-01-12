@@ -38,5 +38,9 @@
         tools:layout="@layout/fragment_search_image"
         android:id="@+id/searchImageFragment"
         android:name="android.com.roshchupkin.unsplashapp.ui.fragment.SearchImageFragment"
-        android:label="SearchImageFragment" />
+        android:label="SearchImageFragment" >
+        <action
+            android:id="@+id/action_searchImageFragment_to_detailImageFragment"
+            app:destination="@id/detailImageFragment" />
+    </fragment>
 </navigation>

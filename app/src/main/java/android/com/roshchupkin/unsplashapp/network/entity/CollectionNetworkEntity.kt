@@ -1,6 +1,5 @@
-package android.com.roshchupkin.unsplashapp.network.entity.collection
+package android.com.roshchupkin.unsplashapp.network.entity
 
-import android.com.roshchupkin.unsplashapp.network.entity.image.UserNetworkEntity
 import com.google.gson.annotations.SerializedName
 
 data class CollectionNetworkEntity(

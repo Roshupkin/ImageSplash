@@ -1,6 +1,6 @@
 package android.com.roshchupkin.unsplashapp.repository
 
-import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
+import android.com.roshchupkin.unsplashapp.model.ImageDomain
 import android.com.roshchupkin.unsplashapp.network.mapper.ImageNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
 import android.com.roshchupkin.unsplashapp.utill.DataState
@@ -18,8 +18,8 @@ class DetailImageRepository(
 
         emit(DataState.Loading)
         try {
-            val imageNetwork = unsplashAPI.getImageById(id)
-           val image = imageNetworkMapper.mapFromEntity(imageNetwork)
+            val imageResponse = unsplashAPI.getImageById(id)
+           val image = imageNetworkMapper.mapFromEntity(imageResponse)
             emit(DataState.Success(image))
         } catch (e: HttpException) {
             emit(DataState.HttpError(e))

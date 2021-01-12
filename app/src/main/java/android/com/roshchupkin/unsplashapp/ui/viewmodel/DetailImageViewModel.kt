@@ -1,7 +1,7 @@
 package android.com.roshchupkin.unsplashapp.ui.viewmodel
 
 
-import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
+import android.com.roshchupkin.unsplashapp.model.ImageDomain
 import android.com.roshchupkin.unsplashapp.repository.DetailImageRepository
 import android.com.roshchupkin.unsplashapp.utill.DataState
 import androidx.hilt.lifecycle.ViewModelInject

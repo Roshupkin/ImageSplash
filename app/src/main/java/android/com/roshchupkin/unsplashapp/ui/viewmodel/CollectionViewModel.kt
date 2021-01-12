@@ -1,6 +1,6 @@
 package android.com.roshchupkin.unsplashapp.ui.viewmodel
 
-import android.com.roshchupkin.unsplashapp.repository.CollectionRepository
+import android.com.roshchupkin.unsplashapp.repository.collection.CollectionRepository
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

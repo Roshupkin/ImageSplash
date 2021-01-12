@@ -1,13 +1,16 @@
-package android.com.roshchupkin.unsplashapp.repository
+package android.com.roshchupkin.unsplashapp.repository.random
 
 import android.com.roshchupkin.unsplashapp.database.dao.RandomImageDao
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
 import android.com.roshchupkin.unsplashapp.database.mapper.ImageCacheMapper
+import android.com.roshchupkin.unsplashapp.model.ImageDomain
+import android.com.roshchupkin.unsplashapp.model.Urls
+import android.com.roshchupkin.unsplashapp.model.User
 import android.com.roshchupkin.unsplashapp.network.mapper.ImageNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
-import android.util.Log
 import androidx.paging.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 @ExperimentalPagingApi
 class RandomImageRepository(
@@ -18,7 +21,7 @@ class RandomImageRepository(
 ) {
 
 
-    fun getRandomPhoto(): Flow<PagingData<RandomImageCacheEntity>> {
+    fun getRandomPhoto(): Flow<PagingData<ImageDomain>> {
         val pagingSource = { randomImageDao.getRandomImage() }
         return Pager(
             config = PagingConfig(
@@ -33,13 +36,17 @@ class RandomImageRepository(
                 imageCacheMapper,
                 imageNetworkMapper
             ), pagingSourceFactory = pagingSource
-        ).flow
+        ).flow.map { pagingData: PagingData<RandomImageCacheEntity> -> pagingData.map { randomImageCacheEntity: RandomImageCacheEntity ->
+            imageCacheMapper.mapFromEntity(randomImageCacheEntity)
+        } }
     }
 
 
     suspend fun clearAllRandomImage(){
         randomImageDao.clearAll()
     }
+
+
 
 
 }

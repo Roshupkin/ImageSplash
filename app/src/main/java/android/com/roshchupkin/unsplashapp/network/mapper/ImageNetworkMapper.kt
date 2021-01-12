@@ -1,7 +1,7 @@
 package android.com.roshchupkin.unsplashapp.network.mapper
 
-import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
-import android.com.roshchupkin.unsplashapp.network.entity.image.ImageNetworkEntity
+import android.com.roshchupkin.unsplashapp.model.ImageDomain
+import android.com.roshchupkin.unsplashapp.network.entity.ImageNetworkEntity
 import android.com.roshchupkin.unsplashapp.utill.EntityMapper
 import javax.inject.Inject
 

@@ -2,7 +2,7 @@ package android.com.roshchupkin.unsplashapp.database.mapper
 
 
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
-import android.com.roshchupkin.unsplashapp.model.Image.Urls
+import android.com.roshchupkin.unsplashapp.model.Urls
 import android.com.roshchupkin.unsplashapp.utill.EntityMapper
 
 import javax.inject.Inject

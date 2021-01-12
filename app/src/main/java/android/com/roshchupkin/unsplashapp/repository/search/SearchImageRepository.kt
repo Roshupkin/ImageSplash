@@ -1,19 +1,19 @@
-package android.com.roshchupkin.unsplashapp.repository
+package android.com.roshchupkin.unsplashapp.repository.search
 
-import android.com.roshchupkin.unsplashapp.network.mapper.ImageNetworkMapper
+import android.com.roshchupkin.unsplashapp.network.mapper.SearchImagesNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import javax.inject.Inject
 
-class ImageByCollectionRepository
+class SearchImageRepository
 @Inject
 constructor(
     private val unsplashAPI: UnsplashAPI,
-    private val imageNetworkMapper: ImageNetworkMapper
+    private val searchImagesNetworkMapper: SearchImagesNetworkMapper
 ) {
-    fun getListOfImagesById(id: Int) =
+    fun searchImage(qurey: String) =
         Pager(
             config = PagingConfig(
                 pageSize = 20,
@@ -21,10 +21,11 @@ constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = {
-                ImageByCollectionPagingSource(
-                    id,
+               SearchImagePagingSource(
+                    qurey,
                     unsplashAPI,
-                    imageNetworkMapper
-                ) }
+                   searchImagesNetworkMapper
+                )
+            }
         ).liveData
 }

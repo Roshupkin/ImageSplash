@@ -2,8 +2,9 @@ package android.com.roshchupkin.unsplashapp.ui.fragment
 
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.databinding.FragmentCollectionBinding
-import android.com.roshchupkin.unsplashapp.model.collection.CollectionDomain
+import android.com.roshchupkin.unsplashapp.model.CollectionDomain
 import android.com.roshchupkin.unsplashapp.ui.adapters.CollectionAdapter
+import android.com.roshchupkin.unsplashapp.ui.adapters.ImageLoadStateAdapter
 import android.com.roshchupkin.unsplashapp.ui.viewmodel.CollectionViewModel
 import android.os.Bundle
 import android.view.View
@@ -14,8 +15,8 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CollectionFragment: Fragment(R.layout.fragment_collection), CollectionAdapter.Interaction {
-    private val collectionViewModel:CollectionViewModel by viewModels()
+class CollectionFragment : Fragment(R.layout.fragment_collection), CollectionAdapter.Interaction {
+    private val collectionViewModel: CollectionViewModel by viewModels()
     lateinit var collectionAdapter: CollectionAdapter
 
     private var _binding: FragmentCollectionBinding? = null
@@ -24,14 +25,18 @@ class CollectionFragment: Fragment(R.layout.fragment_collection), CollectionAdap
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCollectionBinding.bind(view)
 
-        collectionViewModel.collection.observe(viewLifecycleOwner){
+        collectionViewModel.collection.observe(viewLifecycleOwner) {
             collectionAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
         binding.apply {
             recyclerView.apply {
                 collectionAdapter = CollectionAdapter(this@CollectionFragment)
-            adapter = collectionAdapter
-        } }
+                adapter = collectionAdapter.withLoadStateHeaderAndFooter(
+                    header = ImageLoadStateAdapter { collectionAdapter.retry() },
+                    footer = ImageLoadStateAdapter { collectionAdapter.retry() }
+                )
+            }
+        }
     }
 
     override fun onItemSelected(position: Int, item: CollectionDomain) {

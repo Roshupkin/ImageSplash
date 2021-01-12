@@ -1,13 +1,13 @@
 package android.com.roshchupkin.unsplashapp.network.mapper
 
-import android.com.roshchupkin.unsplashapp.model.Image.ProfileImage
-import android.com.roshchupkin.unsplashapp.network.entity.image.ProfileImageNetworkEntity
+import android.com.roshchupkin.unsplashapp.model.ProfileImage
+import android.com.roshchupkin.unsplashapp.network.entity.ProfileImageNetworkEntity
 import android.com.roshchupkin.unsplashapp.utill.EntityMapper
 import javax.inject.Inject
 
 class ProfileImageNetworkMapper
 @Inject
-constructor() : EntityMapper<ProfileImageNetworkEntity,ProfileImage> {
+constructor() : EntityMapper<ProfileImageNetworkEntity, ProfileImage> {
     override fun mapToEntity(domainModule: ProfileImage): ProfileImageNetworkEntity {
         return ProfileImageNetworkEntity(
             small = domainModule.small,

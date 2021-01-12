@@ -1,16 +1,14 @@
 package android.com.roshchupkin.unsplashapp.network.mapper
 
-import android.com.roshchupkin.unsplashapp.model.Image.ImageDomain
-import android.com.roshchupkin.unsplashapp.model.collection.CollectionDomain
-import android.com.roshchupkin.unsplashapp.network.entity.collection.CollectionNetworkEntity
-import android.com.roshchupkin.unsplashapp.network.entity.image.ImageNetworkEntity
+import android.com.roshchupkin.unsplashapp.model.CollectionDomain
+import android.com.roshchupkin.unsplashapp.network.entity.CollectionNetworkEntity
 import android.com.roshchupkin.unsplashapp.utill.EntityMapper
 import javax.inject.Inject
 
 class CollectionNetworkMapper @Inject constructor(
     private val coverPhotoNetworkMapper: CoverPhotoNetworkMapper,
     private val userNetworkMapper: UserNetworkMapper
-): EntityMapper<CollectionNetworkEntity,CollectionDomain> {
+): EntityMapper<CollectionNetworkEntity, CollectionDomain> {
     override fun mapToEntity(domainModule: CollectionDomain): CollectionNetworkEntity {
         return CollectionNetworkEntity(
             id = domainModule.id,

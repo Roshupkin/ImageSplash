@@ -1,6 +1,6 @@
-package android.com.roshchupkin.unsplashapp.network.entity.image
+package android.com.roshchupkin.unsplashapp.network.entity
 
-import android.com.roshchupkin.unsplashapp.model.Image.ProfileImage
+
 
 data class UserNetworkEntity(
     val name: String?,

@@ -1,6 +1,6 @@
-package android.com.roshchupkin.unsplashapp.repository
+package android.com.roshchupkin.unsplashapp.repository.collection
 
-import android.com.roshchupkin.unsplashapp.model.collection.CollectionDomain
+import android.com.roshchupkin.unsplashapp.model.CollectionDomain
 import android.com.roshchupkin.unsplashapp.network.mapper.CollectionNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
 import androidx.paging.PagingSource
@@ -16,8 +16,8 @@ class CollectionPagingSource(
         val position = params.key ?: STARTING_PAGE_INDEX
 
         return try {
-            val response = unsplashAPI.getCollection(position,params.loadSize)
-            val photos = collectionNetworkMapper.mapFromEntityList(response)
+            val responseCollections = unsplashAPI.getCollection(position,params.loadSize)/*.response*/
+            val photos = collectionNetworkMapper.mapFromEntityList(responseCollections)
 
             LoadResult.Page(
                 data = photos,
