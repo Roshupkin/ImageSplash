@@ -64,6 +64,7 @@ constructor() : Fragment(R.layout.fragment_detail_image) {
                             setOnClickListener {
                                 context.startActivity(intent)
                             }
+                            paint.isUnderlineText = true
                         }
                     }
                 }

@@ -10,7 +10,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 
 
-class ListOfImagesViewModel
+class ImagesByColletionViewModel
 @ViewModelInject
 constructor(
     private val imageByCollectionRepository: ImageByCollectionRepository

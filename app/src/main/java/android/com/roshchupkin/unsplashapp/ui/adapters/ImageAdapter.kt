@@ -76,8 +76,7 @@ PagingDataAdapter<ImageDomain, ImageAdapter.ImageViewHolder>(DIFF_CALLBACK) {
                     .error(R.drawable.ic_error_loading_24)
                     .into(imageViewUserProfile)
 
-                textViewUserName.text = item.user?.username
-                textPositionOnAdapter.text = absoluteAdapterPosition.toString()
+                textViewName.text = item.user?.name
 
 
 

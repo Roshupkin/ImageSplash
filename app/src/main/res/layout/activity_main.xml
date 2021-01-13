@@ -7,6 +7,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
    >
 
     <com.google.android.material.appbar.AppBarLayout
@@ -18,38 +19,29 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:elevation="2dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="4dp"
             app:layout_scrollFlags="scroll|enterAlways|snap">
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/teal_700"
                 app:iconifiedByDefault="false" />
 
         </com.google.android.material.appbar.MaterialToolbar>
 
         <com.google.android.material.tabs.TabLayout
+            app:tabIndicatorColor="@color/black"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-        </com.google.android.material.tabs.TabLayout>
-
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- <androidx.fragment.app.FragmentContainerView
-         android:id="@+id/viewpager_fragment_container"
-         android:name="android.com.roshchupkin.unsplashapp.ui.MainNavHostFragment"
-         app:defaultNavHost="true"
-         app:navGraph="@navigation/navgraph"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         tools:context=".ui.MainActivity" />-->
 
     <androidx.fragment.app.FragmentContainerView
         tools:context=".ui.MainActivity"

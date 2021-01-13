@@ -86,8 +86,7 @@ class CollectionAdapter(private val interaction: Interaction? = null) :
                     .error(R.drawable.ic_error_loading_24)
                     .into(imageViewUserProfile)
 
-                textViewUserName.text = item.user?.username
-                textPositionOnAdapter.text = absoluteAdapterPosition.toString()
+                textViewName.text = item.user?.name
                 textTotalPhotos.text = item.totalPhotos.toString()
                 textTitleCollection.text = item.title
 

@@ -1,11 +1,11 @@
 package android.com.roshchupkin.unsplashapp.ui.fragment
 
 import android.com.roshchupkin.unsplashapp.R
-import android.com.roshchupkin.unsplashapp.databinding.FragmentRandomPhotoBinding
+import android.com.roshchupkin.unsplashapp.databinding.FragmentImageListBinding
 import android.com.roshchupkin.unsplashapp.model.ImageDomain
 import android.com.roshchupkin.unsplashapp.ui.adapters.ImageAdapter
 import android.com.roshchupkin.unsplashapp.ui.adapters.ImageLoadStateAdapter
-import android.com.roshchupkin.unsplashapp.ui.viewmodel.RandomImageViewModel
+import android.com.roshchupkin.unsplashapp.ui.viewmodel.RandomImagesViewModel
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -23,31 +23,31 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 @ExperimentalPagingApi
-class RandomImageFragment
+class RandomImagesFragment
 @Inject
-constructor() : Fragment(R.layout.fragment_random_photo), ImageAdapter.Interaction {
-    private val randomImageViewModel: RandomImageViewModel by viewModels()
+constructor() : Fragment(R.layout.fragment_image_list), ImageAdapter.Interaction {
+    private val randomImagesViewModel: RandomImagesViewModel by viewModels()
     lateinit var randomImageAdapter: ImageAdapter
 
-    private var _binding: FragmentRandomPhotoBinding? = null
+    private var _binding: FragmentImageListBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        randomImageViewModel.clearAllRandomImage()
+        randomImagesViewModel.clearAllRandomImage()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        _binding = FragmentRandomPhotoBinding.bind(view)
+        _binding = FragmentImageListBinding.bind(view)
 
-        randomImageViewModel.dataState.observe(viewLifecycleOwner) {
+        randomImagesViewModel.dataState.observe(viewLifecycleOwner) {
             randomImageAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
         binding.apply {
             recyclerView.apply {
-                randomImageAdapter = ImageAdapter(this@RandomImageFragment)
+                randomImageAdapter = ImageAdapter(this@RandomImagesFragment)
                 adapter = randomImageAdapter.withLoadStateHeaderAndFooter(
                     header = ImageLoadStateAdapter { randomImageAdapter.retry() },
                     footer = ImageLoadStateAdapter { randomImageAdapter.retry() }

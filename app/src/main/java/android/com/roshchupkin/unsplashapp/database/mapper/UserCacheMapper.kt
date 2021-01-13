@@ -14,8 +14,8 @@ constructor(private val profileImageCacheMapper: ProfileImageCacheMapper):Entity
 
     override fun mapFromEntity(entity: RandomImageCacheEntity): User {
         return User(
-            name = null,
-            username = entity.username,
+            name = entity.name,
+            username = null,
             profile_image = profileImageCacheMapper.mapFromEntity(entity)
         )
     }

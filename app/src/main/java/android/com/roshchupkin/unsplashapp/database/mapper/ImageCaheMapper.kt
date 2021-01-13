@@ -20,7 +20,7 @@ constructor(
             height = domainModule.height,
             width = domainModule.width,
             urlsImageRegular = domainModule.urls?.regular,
-            username = domainModule.user?.username,
+            name = domainModule.user?.name,
             profileImageSmall = domainModule.user?.profile_image?.small
         )
     }

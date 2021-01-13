@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 
 @ExperimentalPagingApi
 @ExperimentalCoroutinesApi
-class RandomImageViewModel
+class RandomImagesViewModel
 @ViewModelInject
 constructor(
     private val imageCacheMapper: ImageCacheMapper,

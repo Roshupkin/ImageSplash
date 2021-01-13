@@ -26,9 +26,9 @@
         android:label="DetailImageFragment"
         tools:layout="@layout/fragment_detail_image"/>
     <fragment
-        tools:layout="@layout/fragment_image"
+        tools:layout="@layout/fragment_image_list"
         android:id="@+id/imageFragment"
-        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.ImageFragment"
+        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.ImagesByCollectionFragment"
         android:label="ImageFragment" >
         <action
             android:id="@+id/action_imageFragment_to_detailImageFragment"
@@ -37,7 +37,7 @@
     <fragment
         tools:layout="@layout/fragment_search_image"
         android:id="@+id/searchImageFragment"
-        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.SearchImageFragment"
+        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.SearchImagesFragment"
         android:label="SearchImageFragment" >
         <action
             android:id="@+id/action_searchImageFragment_to_detailImageFragment"

@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagingData
 
-class SearchImageViewModel
+class SearchImagesViewModel
 @ViewModelInject
 constructor(
     private val searchImageRepository: SearchImageRepository
