@@ -10,20 +10,20 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface UnsplashAPI {
-    @Headers("Accept-Version: v1", "Authorization: Client-ID XXrCKFWKnVEBeZsoB7CdeX0kjAzwy4YHEirFDn2BFxo")
+    @Headers("Accept-Version: v1", "Authorization: Client-ID jkr2afOninca7fO5MuE6RrjMjuYCEWB76Q20Ry5GCQA")
     @GET("photos/random")
     suspend fun getRandomImage(
         @Query("count") count: Int
     ): List<ImageNetworkEntity>
 
 
-    @Headers("Accept-Version: v1", "Authorization: Client-ID XXrCKFWKnVEBeZsoB7CdeX0kjAzwy4YHEirFDn2BFxo")
+    @Headers("Accept-Version: v1", "Authorization: Client-ID jkr2afOninca7fO5MuE6RrjMjuYCEWB76Q20Ry5GCQA")
     @GET("photos/{id}")
     suspend fun getImageById(
          @Path("id")id: String
     ): ImageNetworkEntity
 
-    @Headers("Accept-Version: v1", "Authorization: Client-ID XXrCKFWKnVEBeZsoB7CdeX0kjAzwy4YHEirFDn2BFxo")
+    @Headers("Accept-Version: v1", "Authorization: Client-ID jkr2afOninca7fO5MuE6RrjMjuYCEWB76Q20Ry5GCQA")
     @GET("/collections")
     suspend fun getCollection(
         @Query("page") page: Int,
@@ -31,7 +31,7 @@ interface UnsplashAPI {
 
     ): List<CollectionNetworkEntity>
 
-    @Headers("Accept-Version: v1", "Authorization: Client-ID XXrCKFWKnVEBeZsoB7CdeX0kjAzwy4YHEirFDn2BFxo")
+    @Headers("Accept-Version: v1", "Authorization: Client-ID jkr2afOninca7fO5MuE6RrjMjuYCEWB76Q20Ry5GCQA")
     @GET("/collections/{id}/photos")
     suspend fun getImagesByCollection(
         @Path("id")id: Int,
@@ -39,7 +39,7 @@ interface UnsplashAPI {
         @Query("per_page") perPage: Int
     ): List<ImageNetworkEntity>
 
-    @Headers("Accept-Version: v1", "Authorization: Client-ID XXrCKFWKnVEBeZsoB7CdeX0kjAzwy4YHEirFDn2BFxo")
+    @Headers("Accept-Version: v1", "Authorization: Client-ID jkr2afOninca7fO5MuE6RrjMjuYCEWB76Q20Ry5GCQA")
     @GET("/search/photos")
     suspend fun searchImage(
         @Query("query") query: String,

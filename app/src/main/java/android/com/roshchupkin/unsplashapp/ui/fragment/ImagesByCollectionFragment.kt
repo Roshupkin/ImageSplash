@@ -7,11 +7,14 @@ import android.com.roshchupkin.unsplashapp.ui.adapters.ImageAdapter
 import android.com.roshchupkin.unsplashapp.ui.adapters.ImageLoadStateAdapter
 import android.com.roshchupkin.unsplashapp.ui.viewmodel.ImagesByColletionViewModel
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -41,8 +44,21 @@ constructor() : Fragment(R.layout.fragment_image_list), ImageAdapter.Interaction
                     header = ImageLoadStateAdapter { imageAdapter.retry() },
                     footer = ImageLoadStateAdapter { imageAdapter.retry() }
                 )
+                buttonRetry.setOnClickListener { imageAdapter.refresh() }
             }
         }
+
+        imageAdapter.addLoadStateListener { loadState ->
+            binding.apply {
+                progressBar.isVisible =
+                    loadState.source.refresh is LoadState.Error || loadState.source.prepend is LoadState.Loading
+                buttonRetry.isVisible = loadState.source.refresh is LoadState.Error
+                textViewSystemMessage.isVisible = loadState.source.refresh is LoadState.Error
+                recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
+
+            }
+        }
+
     }
 
     override fun onItemSelected(position: Int, item: ImageDomain) {

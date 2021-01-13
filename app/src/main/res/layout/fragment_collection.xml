@@ -19,17 +19,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        tools:visibility="visible" />
-
+        android:visibility="gone" />
     <TextView
-        android:id="@+id/text_view_error"
+        android:id="@+id/text_view_system_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/progress_bar"
         android:layout_centerHorizontal="true"
-        android:text="Results could not be loaded"
-        android:visibility="gone"
-        tools:visibility="visible" />
+        android:layout_marginBottom="100dp"
+        android:text="Не получилось загрузить"
+        android:visibility="gone" />
+
+    <Button
+
+        android:id="@+id/button_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progress_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:text="Повторить"
+        android:textColor="@color/text_color"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

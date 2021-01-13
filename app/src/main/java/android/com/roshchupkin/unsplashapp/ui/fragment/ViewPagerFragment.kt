@@ -26,7 +26,6 @@ class ViewPagerFragment : Fragment(R.layout.fragment_viewpager) {
             lifecycle
         )
 
-        requireActivity().appbar_layout.visibility = View.VISIBLE
 
 
         TabLayoutMediator(
@@ -72,8 +71,13 @@ class ViewPagerFragment : Fragment(R.layout.fragment_viewpager) {
 
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onResume() {
+        super.onResume()
+        requireActivity().appbar_layout.visibility = View.VISIBLE
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
         requireActivity().appbar_layout.visibility = View.GONE
 
     }

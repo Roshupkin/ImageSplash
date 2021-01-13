@@ -7,6 +7,7 @@ import android.com.roshchupkin.unsplashapp.ui.adapters.ImageAdapter
 import android.com.roshchupkin.unsplashapp.ui.adapters.ImageLoadStateAdapter
 import android.com.roshchupkin.unsplashapp.ui.viewmodel.RandomImagesViewModel
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -27,7 +28,7 @@ class RandomImagesFragment
 @Inject
 constructor() : Fragment(R.layout.fragment_image_list), ImageAdapter.Interaction {
     private val randomImagesViewModel: RandomImagesViewModel by viewModels()
-    lateinit var randomImageAdapter: ImageAdapter
+    lateinit var imageAdapter: ImageAdapter
 
     private var _binding: FragmentImageListBinding? = null
     private val binding get() = _binding!!
@@ -43,32 +44,37 @@ constructor() : Fragment(R.layout.fragment_image_list), ImageAdapter.Interaction
         _binding = FragmentImageListBinding.bind(view)
 
         randomImagesViewModel.dataState.observe(viewLifecycleOwner) {
-            randomImageAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+            imageAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
         binding.apply {
             recyclerView.apply {
-                randomImageAdapter = ImageAdapter(this@RandomImagesFragment)
-                adapter = randomImageAdapter.withLoadStateHeaderAndFooter(
-                    header = ImageLoadStateAdapter { randomImageAdapter.retry() },
-                    footer = ImageLoadStateAdapter { randomImageAdapter.retry() }
+                imageAdapter = ImageAdapter(this@RandomImagesFragment)
+                adapter = imageAdapter.withLoadStateHeaderAndFooter(
+                    header = ImageLoadStateAdapter { imageAdapter.retry() },
+                    footer = ImageLoadStateAdapter { imageAdapter.retry() }
                 )
+                buttonRetry.setOnClickListener { imageAdapter.refresh() }
             }
         }
 
 
-        randomImageAdapter.addLoadStateListener { loadState ->
+        imageAdapter.addLoadStateListener { loadState ->
             binding.apply {
-                progressBar.isVisible = loadState.source.append is LoadState.Loading
-                recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
-                textViewError.isVisible = loadState.source.refresh is LoadState.NotLoading
+                progressBar.isVisible =
+                    loadState.mediator?.refresh is LoadState.Error || loadState.mediator?.prepend is LoadState.Loading
+                buttonRetry.isVisible = loadState.mediator?.refresh is LoadState.Error
+                textViewSystemMessage.isVisible = loadState.mediator?.refresh is LoadState.Error
+                recyclerView.isVisible = loadState.mediator?.refresh is LoadState.NotLoading
 
-                // empty view
-                if (loadState.source.refresh is LoadState.NotLoading &&
-                    loadState.append.endOfPaginationReached &&
-                    randomImageAdapter.itemCount < 1
-                ) {
-                    recyclerView.isVisible = false
+
+                val errorState = when {
+                    loadState.mediator?.refresh is LoadState.Error -> loadState.mediator?.refresh as LoadState.Error
+                    else -> null
                 }
+                errorState?.let {
+                    Log.e("ASDADS", "asd${(it.error)}")
+                }
+
             }
         }
 

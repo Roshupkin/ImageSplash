@@ -1,36 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:name="android.com.roshchupkin.unsplashapp.ui.fragment.RandomPhotoFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.RandomImagesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        tools:visibility="visible" />
+        android:visibility="gone" />
 
     <TextView
-        android:id="@+id/text_view_error"
+        android:id="@+id/text_view_system_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/progress_bar"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Results could not be loaded"
-        android:visibility="gone"
-        tools:visibility="visible" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="100dp"
+        android:text="Не получилось загрузить спиок, возможно дело в интернет соединении или же закончился API ключ, немного подождите   ¯\_(ツ)_/¯"
+        android:visibility="gone" />
+
+    <Button
+
+        android:id="@+id/button_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progress_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:text="Повторить"
+        android:textColor="@color/text_color"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

@@ -10,9 +10,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.paging.map
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,15 +42,36 @@ class SearchImagesFragment : Fragment(R.layout.fragment_image_list), ImageAdapte
                     footer = ImageLoadStateAdapter { imageAdapter.retry() }
                 )
                 scrollToPosition(0)
+                buttonRetry.setOnClickListener { imageAdapter.retry() }
             }
             searchImagesViewModel.getImageList(queryString).observe(viewLifecycleOwner) {
                 imageAdapter.submitData(viewLifecycleOwner.lifecycle, it)
-                Log.e("ПРИШЛО","sssss   ${it.map {  }}")
             }
         }
 
 
+        imageAdapter.addLoadStateListener { loadState ->
+            binding.apply {
+                progressBar.isVisible =
+                    loadState.source.refresh is LoadState.Error || loadState.source.prepend is LoadState.Loading
+                buttonRetry.isVisible = loadState.source.refresh is LoadState.Error
+                textViewSystemMessage.isVisible = loadState.source.refresh is LoadState.Error
+                recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
 
+
+                if (loadState.source.refresh is LoadState.NotLoading &&
+                    loadState.append.endOfPaginationReached &&
+                    imageAdapter.itemCount < 1
+                ) {
+                    recyclerView.isVisible = false
+                    textViewSystemMessage.isVisible = true
+                    textViewSystemMessage.text = "Ваш запрос не найден"
+                } else {
+                    textViewSystemMessage.isVisible = false
+                }
+
+            }
+        }
 
     }
 

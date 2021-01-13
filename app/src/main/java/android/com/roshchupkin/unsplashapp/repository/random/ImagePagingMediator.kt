@@ -7,6 +7,7 @@ import android.com.roshchupkin.unsplashapp.network.mapper.ImageNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
 import android.util.Log
 import androidx.paging.*
+import retrofit2.HttpException
 import java.io.IOException
 
 private const val COUNT = 30
@@ -36,6 +37,8 @@ class ImagePagingMediator(
             return MediatorResult.Success(endOfPaginationReached = endOfPagnationReached)
         } catch (exception: IOException) {
             return MediatorResult.Error(exception)
+        } catch (exception: HttpException) {
+           return MediatorResult.Error(exception)
         }
 
     }

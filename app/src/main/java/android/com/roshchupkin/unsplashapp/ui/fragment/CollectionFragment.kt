@@ -9,9 +9,11 @@ import android.com.roshchupkin.unsplashapp.ui.viewmodel.CollectionViewModel
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,6 +37,18 @@ class CollectionFragment : Fragment(R.layout.fragment_collection), CollectionAda
                     header = ImageLoadStateAdapter { collectionAdapter.retry() },
                     footer = ImageLoadStateAdapter { collectionAdapter.retry() }
                 )
+                buttonRetry.setOnClickListener { collectionAdapter.refresh() }
+            }
+        }
+
+
+        collectionAdapter.addLoadStateListener { loadState ->
+            binding.apply {
+                progressBar.isVisible =
+                    loadState.source.refresh is LoadState.Error || loadState.source.prepend is LoadState.Loading
+                buttonRetry.isVisible = loadState.source.refresh is LoadState.Error
+                textViewSystemMessage.isVisible = loadState.source.refresh is LoadState.Error
+                recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
             }
         }
     }
