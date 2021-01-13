@@ -9,12 +9,6 @@ data class RandomImageCacheEntity(
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     val id: String,
-    @SerializedName("description")
-    val description: String?,
-    @SerializedName("height")
-    val height: Int?,
-    @SerializedName("width")
-    val width: Int?,
     @SerializedName("urlsImageRegular")
     val urlsImageRegular:String?,
     @SerializedName("username")

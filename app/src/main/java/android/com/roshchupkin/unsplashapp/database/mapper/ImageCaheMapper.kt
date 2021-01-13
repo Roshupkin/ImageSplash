@@ -16,9 +16,6 @@ constructor(
     override fun mapToEntity(domainModule: ImageDomain): RandomImageCacheEntity {
         return RandomImageCacheEntity(
             id = domainModule.id,
-            description = domainModule.description,
-            height = domainModule.height,
-            width = domainModule.width,
             urlsImageRegular = domainModule.urls?.regular,
             name = domainModule.user?.name,
             profileImageSmall = domainModule.user?.profile_image?.small
@@ -28,9 +25,9 @@ constructor(
     override fun mapFromEntity(entity: RandomImageCacheEntity): ImageDomain {
         return ImageDomain(
             id = entity.id,
-            description = entity.description,
-            height = entity.height,
-            width = entity.width,
+            description = null,
+            height = null,
+            width = null,
             urls = urlsCacheMapper.mapFromEntity(entity),
             user = userCacheMapper.mapFromEntity(entity)
         )

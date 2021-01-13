@@ -27,7 +27,7 @@
         android:layout_above="@+id/progress_bar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
-        android:text="Не получилось загрузить"
+        android:text="Не получилось загрузить спиок, возможно дело в интернет соединении или же закончился API ключ, немного подождите   ¯\_(ツ)_/¯"
         android:visibility="gone" />
 
     <Button
