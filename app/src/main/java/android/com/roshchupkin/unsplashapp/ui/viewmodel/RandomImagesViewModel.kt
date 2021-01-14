@@ -26,14 +26,6 @@ constructor(
     private val randomImageRepository: RandomImageRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-
-
     var dataState = randomImageRepository.getRandomPhoto().cachedIn(viewModelScope).asLiveData()
-
-
-    fun clearAllRandomImage() {
-        viewModelScope.launch { randomImageRepository.clearAllRandomImage() }
-    }
-
 
 }

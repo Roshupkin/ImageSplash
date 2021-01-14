@@ -42,11 +42,6 @@ class RandomImageRepository(
     }
 
 
-    suspend fun clearAllRandomImage(){
-        randomImageDao.clearAll()
-    }
-
-
 
 
 }

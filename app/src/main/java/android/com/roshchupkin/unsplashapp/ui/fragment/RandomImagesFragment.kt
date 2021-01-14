@@ -33,10 +33,6 @@ constructor() : Fragment(R.layout.fragment_image_list), ImageAdapter.Interaction
     private var _binding: FragmentImageListBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        randomImagesViewModel.clearAllRandomImage()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

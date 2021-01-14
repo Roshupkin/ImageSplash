@@ -11,6 +11,7 @@ import retrofit2.HttpException
 import java.io.IOException
 
 private const val COUNT = 30
+
 @ExperimentalPagingApi
 class ImagePagingMediator(
     private val unsplashAPI: UnsplashAPI,
@@ -30,15 +31,18 @@ class ImagePagingMediator(
             val listRandomImage = randomImageResponse/*.response*/
             val domainListRandomImage = imageNetworkMapper.mapFromEntityList(listRandomImage)
             val randomImageCache = imageCacheMapper.mapToEntityList(domainListRandomImage)
-            randomImageDao.insertRandomImage(randomImageCache)
 
+            if(loadType == LoadType.REFRESH){
+                randomImageDao.clearAll()
+            }
+            randomImageDao.insertRandomImage(randomImageCache)
             val endOfPagnationReached = listRandomImage.isEmpty()
             Log.e("RA", "$endOfPagnationReached")
             return MediatorResult.Success(endOfPaginationReached = endOfPagnationReached)
         } catch (exception: IOException) {
             return MediatorResult.Error(exception)
         } catch (exception: HttpException) {
-           return MediatorResult.Error(exception)
+            return MediatorResult.Error(exception)
         }
 
     }
