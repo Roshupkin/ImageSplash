@@ -27,12 +27,29 @@ class ImagePagingMediator(
     ): MediatorResult {
 
         try {
+
             val randomImageResponse = unsplashAPI.getRandomImage(COUNT)
             val listRandomImage = randomImageResponse/*.response*/
             val domainListRandomImage = imageNetworkMapper.mapFromEntityList(listRandomImage)
             val randomImageCache = imageCacheMapper.mapToEntityList(domainListRandomImage)
 
-            if(loadType == LoadType.REFRESH){
+            when (loadType) {
+                LoadType.REFRESH -> null
+
+                LoadType.PREPEND ->
+                    return MediatorResult.Success(endOfPaginationReached = true)
+                LoadType.APPEND -> {
+                    val lastItem = state.lastItemOrNull()
+                    if (lastItem == null) {
+                        return MediatorResult.Success(
+                            endOfPaginationReached = true
+                        )
+                    }
+                }
+            }
+
+
+            if (loadType == LoadType.REFRESH) {
                 randomImageDao.clearAll()
             }
             randomImageDao.insertRandomImage(randomImageCache)
