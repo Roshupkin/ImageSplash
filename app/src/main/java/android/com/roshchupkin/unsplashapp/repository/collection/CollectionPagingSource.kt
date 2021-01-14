@@ -16,7 +16,7 @@ class CollectionPagingSource(
         val position = params.key ?: STARTING_PAGE_INDEX
 
         return try {
-            val responseCollections = unsplashAPI.getCollection(position,params.loadSize)/*.response*/
+            val responseCollections = unsplashAPI.getCollection(position,params.loadSize)
             val photos = collectionNetworkMapper.mapFromEntityList(responseCollections)
 
             LoadResult.Page(

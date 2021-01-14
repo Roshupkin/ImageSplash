@@ -16,7 +16,7 @@ class ImageByCollectionPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ImageDomain> {
         val position = params.key ?: STARTING_PAGE_INDEX
         return try {
-            val responseImageByCollection = unsplashAPI.getImagesByCollection(imageListId,position,params.loadSize)/*.response*/
+            val responseImageByCollection = unsplashAPI.getImagesByCollection(imageListId,position,params.loadSize)
             val images = imageNetworkMapper.mapFromEntityList(responseImageByCollection)
 
             LoadResult.Page(

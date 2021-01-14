@@ -15,6 +15,9 @@ interface RandomImageDao {
     @Query("SELECT * FROM random_image ")
     fun getRandomImage(): PagingSource<Int, RandomImageCacheEntity>
 
-    @Query("DELETE FROM random_image")
-    suspend fun clearAll()
+    @Query("DELETE FROM random_image WHERE rowid IN (SELECT rowid FROM random_image LIMIT 30)")
+    suspend fun clearFirs30()
+
+    @Query("SELECT COUNT(*) FROM random_image")
+    suspend fun dbLength():Int
 }

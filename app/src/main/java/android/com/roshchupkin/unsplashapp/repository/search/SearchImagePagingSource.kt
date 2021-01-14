@@ -19,8 +19,8 @@ class SearchImagePagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ImageDomain> {
         val position = params.key ?: STARTING_PAGE_INDEX
         return try {
-            Log.e("LOADING","${params.loadSize}")
-            val searchResponse = unsplashAPI.searchImage(queryString,position,params.loadSize)/*.response*/
+
+            val searchResponse = unsplashAPI.searchImage(queryString,position,params.loadSize)
             val images = searchImagesNetworkMapper.mapFromEntity(searchResponse)
 
             LoadResult.Page(
