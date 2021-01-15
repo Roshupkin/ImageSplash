@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
+
    >
 
     <com.google.android.material.appbar.AppBarLayout
@@ -44,6 +45,7 @@
 
 
     <androidx.fragment.app.FragmentContainerView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".ui.MainActivity"
         android:id="@+id/fragment_container"
         android:name="android.com.roshchupkin.unsplashapp.ui.MainNavHostFragment"
