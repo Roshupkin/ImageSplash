@@ -73,12 +73,14 @@ class ViewPagerFragment : Fragment(R.layout.fragment_viewpager) {
 
     override fun onResume() {
         super.onResume()
-        requireActivity().appbar_layout.visibility = View.VISIBLE
+        requireActivity().appbar_layout.setExpanded(true)
+        requireActivity().fragment_container.isNestedScrollingEnabled = true
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        requireActivity().appbar_layout.visibility = View.GONE
+        requireActivity().appbar_layout.setExpanded(false)
+        requireActivity().fragment_container.isNestedScrollingEnabled = false
 
     }
 

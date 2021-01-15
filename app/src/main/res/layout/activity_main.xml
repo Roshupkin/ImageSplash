@@ -8,22 +8,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-
-   >
+    >
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        >
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:elevation="2dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="4dp"
+            android:elevation="2dp"
             app:layout_scrollFlags="scroll|enterAlways|snap">
 
             <androidx.appcompat.widget.SearchView
@@ -35,24 +32,23 @@
         </com.google.android.material.appbar.MaterialToolbar>
 
         <com.google.android.material.tabs.TabLayout
-            app:tabIndicatorColor="@color/black"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:tabIndicatorColor="@color/black" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <androidx.fragment.app.FragmentContainerView
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".ui.MainActivity"
         android:id="@+id/fragment_container"
         android:name="android.com.roshchupkin.unsplashapp.ui.MainNavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/navgraph" />
+        app:navGraph="@navigation/navgraph"
+        tools:context=".ui.MainActivity" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
