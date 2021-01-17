@@ -10,12 +10,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @AndroidEntryPoint
+@ExperimentalCoroutinesApi
+@ExperimentalPagingApi
 class MainActivity : AppCompatActivity() {
-    @ExperimentalCoroutinesApi
-    @ExperimentalPagingApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-            }
+    }
 }

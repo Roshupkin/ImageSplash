@@ -44,7 +44,7 @@ constructor() : Fragment(R.layout.fragment_image_list), ImageAdapter.Interaction
         }
         binding.apply {
             recyclerView.apply {
-                imageAdapter = ImageAdapter(this@RandomImagesFragment)
+                imageAdapter = ImageAdapter(this@RandomImagesFragment,)
                 adapter = imageAdapter.withLoadStateHeaderAndFooter(
                     header = ImageLoadStateAdapter { imageAdapter.retry() },
                     footer = ImageLoadStateAdapter { imageAdapter.retry() }

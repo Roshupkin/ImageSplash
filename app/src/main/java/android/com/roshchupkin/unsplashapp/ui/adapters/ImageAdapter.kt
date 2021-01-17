@@ -34,7 +34,9 @@ PagingDataAdapter<ImageDomain, ImageAdapter.ImageViewHolder>(DIFF_CALLBACK) {
         }
     }
 
-
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val binding =
             ItemImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)

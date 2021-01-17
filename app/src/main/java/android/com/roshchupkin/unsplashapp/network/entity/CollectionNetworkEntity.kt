@@ -1,5 +1,6 @@
 package android.com.roshchupkin.unsplashapp.network.entity
 
+import android.com.roshchupkin.unsplashapp.model.*
 import com.google.gson.annotations.SerializedName
 
 data class CollectionNetworkEntity(
@@ -9,3 +10,4 @@ data class CollectionNetworkEntity(
     @SerializedName("cover_photo") var coverPhoto: CoverPhotoNetworkEntity?,
     @SerializedName("user") var user: UserNetworkEntity?,
 )
+

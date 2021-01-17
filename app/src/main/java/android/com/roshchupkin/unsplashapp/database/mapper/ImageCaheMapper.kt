@@ -3,15 +3,15 @@ package android.com.roshchupkin.unsplashapp.database.mapper
 
 import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntity
 import android.com.roshchupkin.unsplashapp.model.ImageDomain
+import android.com.roshchupkin.unsplashapp.model.ProfileImage
+import android.com.roshchupkin.unsplashapp.model.Urls
+import android.com.roshchupkin.unsplashapp.model.User
 import android.com.roshchupkin.unsplashapp.utill.EntityMapper
 import javax.inject.Inject
 
 class ImageCacheMapper
 @Inject
-constructor(
-    private val urlsCacheMapper: UrlsCacheMapper,
-    private val userCacheMapper: UserCacheMapper
-) : EntityMapper<RandomImageCacheEntity, ImageDomain> {
+constructor() : EntityMapper<RandomImageCacheEntity, ImageDomain> {
 
     override fun mapToEntity(domainModule: ImageDomain): RandomImageCacheEntity {
         return RandomImageCacheEntity(
@@ -28,8 +28,34 @@ constructor(
             description = null,
             height = null,
             width = null,
-            urls = urlsCacheMapper.mapFromEntity(entity),
-            user = userCacheMapper.mapFromEntity(entity)
+            urls = mapToUrls(entity),
+            user = mapToUser(entity)
+        )
+    }
+
+    fun mapToUrls(entity: RandomImageCacheEntity): Urls {
+        return Urls(
+            full = null,
+            raw = null,
+            regular = entity.urlsImageRegular,
+            small = null,
+            thumb = null
+        )
+    }
+
+    fun mapToUser(entity: RandomImageCacheEntity): User {
+        return User(
+            name = entity.name,
+            username = null,
+            profile_image = mapToProfileImage(entity)
+        )
+    }
+
+    fun mapToProfileImage(entity: RandomImageCacheEntity): ProfileImage {
+        return ProfileImage(
+            small = entity.profileImageSmall,
+            medium = null,
+            large = null
         )
     }
 
@@ -40,4 +66,5 @@ constructor(
     fun mapFromEntityList(entities: List<RandomImageCacheEntity>): List<ImageDomain> {
         return entities.map { mapFromEntity(it) }
     }
+
 }

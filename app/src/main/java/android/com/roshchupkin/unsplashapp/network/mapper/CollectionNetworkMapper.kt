@@ -35,4 +35,5 @@ class CollectionNetworkMapper @Inject constructor(
     fun mapFromEntityList(entities: List<CollectionNetworkEntity>): List<CollectionDomain> {
         return entities.map { mapFromEntity(it) }
 }
+
 }

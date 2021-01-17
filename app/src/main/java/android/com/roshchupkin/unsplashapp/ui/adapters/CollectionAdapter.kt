@@ -60,14 +60,6 @@ class CollectionAdapter(private val interaction: Interaction? = null) :
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        init {
-            binding.root.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-
-                }
-            }
-        }
 
         fun bind(item: CollectionDomain, interaction: Interaction?) {
             binding.apply {
