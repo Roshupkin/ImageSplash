@@ -1,4 +1,4 @@
-package android.com.roshchupkin.unsplashapp.ui.fragment
+package android.com.roshchupkin.unsplashapp.ui.fragments
 
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.ui.adapters.ViewPagerAdapter
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.paging.ExperimentalPagingApi
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_viewpager.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+
 
 @ExperimentalCoroutinesApi
 @ExperimentalPagingApi
@@ -26,19 +28,14 @@ class ViewPagerFragment : Fragment(R.layout.fragment_viewpager) {
             lifecycle
         )
 
-
-
         TabLayoutMediator(
             requireActivity().tab_layout, view.viewpager
         ) { tab, position ->
             when (position) {
                 0 -> {
-
                     tab.text = "Random Photo"
                 }
                 1 -> {
-
-
                     tab.text = "Collection"
                 }
             }
@@ -49,7 +46,6 @@ class ViewPagerFragment : Fragment(R.layout.fragment_viewpager) {
                 false -> {
                     v.search_view.setQuery("", false)
                 }
-
             }
         }
         requireActivity().search_view.setOnQueryTextListener(object :
@@ -59,7 +55,10 @@ class ViewPagerFragment : Fragment(R.layout.fragment_viewpager) {
                 if (query != null) {
                     requireActivity().search_view.clearFocus()
                     val bundle = bundleOf("queryString" to query)
-                    findNavController().navigate(R.id.action_viewPagerFragment_to_searchImageFragment,bundle)
+                    findNavController().navigate(
+                        R.id.action_containerFragment_to_searchImageFragment,
+                        bundle
+                    )
                 }
                 return true
             }
@@ -68,20 +67,18 @@ class ViewPagerFragment : Fragment(R.layout.fragment_viewpager) {
                 return true
             }
         })
-
     }
 
     override fun onResume() {
         super.onResume()
-        requireActivity().appbar_layout.setExpanded(true)
-        requireActivity().fragment_container.isNestedScrollingEnabled = true
+        requireActivity().tab_layout.isVisible = true
+        requireActivity().material_toolbar.isVisible = true
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        requireActivity().appbar_layout.setExpanded(false)
-        requireActivity().fragment_container.isNestedScrollingEnabled = false
-
+        requireActivity().tab_layout.isVisible = false
+        requireActivity().material_toolbar.isVisible = false
     }
 
 

@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.RandomImagesFragment">
+    tools:context=".ui.fragments.RandomImages.RandomImagesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -27,7 +26,7 @@
         android:layout_above="@+id/progress_bar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
-        android:text="Не получилось загрузить спиок, возможно дело в интернет соединении или же закончился API ключ, немного подождите   ¯\_(ツ)_/¯"
+        android:text="@string/exception_apikey_string"
         android:visibility="gone" />
 
     <Button
@@ -38,7 +37,7 @@
         android:layout_below="@+id/progress_bar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
-        android:text="Повторить"
+        android:text="@string/retry_string"
         android:textColor="@color/text_color"
         android:visibility="gone" />
 

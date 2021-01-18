@@ -1,4 +1,4 @@
-package android.com.roshchupkin.unsplashapp.ui.viewmodel
+package android.com.roshchupkin.unsplashapp.ui.fragments.ImageByCollection
 
 import android.com.roshchupkin.unsplashapp.model.ImageDomain
 import android.com.roshchupkin.unsplashapp.repository.collection.image.ImageByCollectionRepository

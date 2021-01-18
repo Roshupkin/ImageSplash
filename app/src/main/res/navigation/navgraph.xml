@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.ViewPagerFragment"
+        android:name="android.com.roshchupkin.unsplashapp.ui.fragments.ViewPagerFragment"
         android:label="ViewPagerFragment"
         tools:layout="@layout/fragment_viewpager">
         <action
@@ -17,27 +17,27 @@
             android:id="@+id/action_collectionsFragment_to_imageFragment"
             app:destination="@id/imageFragment" />
         <action
-            android:id="@+id/action_viewPagerFragment_to_searchImageFragment"
+            android:id="@+id/action_containerFragment_to_searchImageFragment"
             app:destination="@id/searchImageFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailImageFragment"
-        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.DetailImageFragment"
+        android:name="android.com.roshchupkin.unsplashapp.ui.fragments.DetailImage.DetailImageFragment"
         android:label="DetailImageFragment"
         tools:layout="@layout/fragment_detail_image"/>
     <fragment
         tools:layout="@layout/fragment_image_list"
         android:id="@+id/imageFragment"
-        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.ImagesByCollectionFragment"
+        android:name="android.com.roshchupkin.unsplashapp.ui.fragments.ImageByCollection.ImagesByCollectionFragment"
         android:label="ImageFragment" >
         <action
             android:id="@+id/action_imageFragment_to_detailImageFragment"
             app:destination="@id/detailImageFragment" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_search_image"
+        tools:layout="@layout/fragment_image_list"
         android:id="@+id/searchImageFragment"
-        android:name="android.com.roshchupkin.unsplashapp.ui.fragment.SearchImagesFragment"
+        android:name="android.com.roshchupkin.unsplashapp.ui.fragments.SearchImages.SearchImagesFragment"
         android:label="SearchImageFragment" >
         <action
             android:id="@+id/action_searchImageFragment_to_detailImageFragment"

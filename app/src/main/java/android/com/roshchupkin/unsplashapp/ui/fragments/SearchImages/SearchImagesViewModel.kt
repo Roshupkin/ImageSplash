@@ -1,4 +1,4 @@
-package android.com.roshchupkin.unsplashapp.ui.viewmodel
+package android.com.roshchupkin.unsplashapp.ui.fragments.SearchImages
 
 import android.com.roshchupkin.unsplashapp.model.ImageDomain
 import android.com.roshchupkin.unsplashapp.repository.search.SearchImageRepository

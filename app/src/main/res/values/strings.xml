@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Image Splash</string>
+    <string name="exception_apikey_string">Не получилось загрузить спиок, возможно дело в интернет соединении или же закончился API ключ, немного подождите ¯_(ツ)_/¯</string>
+    <string name="retry_string">Повторить попытку</string>
+    <string name="height_string">Высота:</string>
+    <string name="width_string">Ширина:</string>
+    <string name="description_string">Описание:</string>
+    <string name="link_string">Ссылка:</string>
+    <string name="exception_check_connection_string">Проверьте интернет подключение или запросы API ключа</string>
 </resources>

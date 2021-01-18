@@ -1,4 +1,4 @@
-package android.com.roshchupkin.unsplashapp.ui.viewmodel
+package android.com.roshchupkin.unsplashapp.ui.fragments.Collection
 
 import android.com.roshchupkin.unsplashapp.repository.collection.CollectionRepository
 import androidx.hilt.lifecycle.ViewModelInject
@@ -8,6 +8,6 @@ import androidx.paging.cachedIn
 
 class CollectionViewModel
 @ViewModelInject
-constructor(private val collectionRepository: CollectionRepository) : ViewModel() {
+constructor(collectionRepository: CollectionRepository) : ViewModel() {
     var collection = collectionRepository.getCollectionImage().cachedIn(viewModelScope)
 }

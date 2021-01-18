@@ -16,13 +16,13 @@
         android:id="@+id/text_view_system_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Проверьте интернет подключение или запросы API ключа" />
+        android:text="@string/exception_check_connection_string" />
 
     <Button
         android:textColor="@color/text_color"
         android:id="@+id/button_retry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Повторить" />
+        android:text="@string/retry_string" />
 
 </LinearLayout>

@@ -1,13 +1,11 @@
-package android.com.roshchupkin.unsplashapp.ui.fragment
+package android.com.roshchupkin.unsplashapp.ui.fragments.ImageByCollection
 
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.databinding.FragmentImageListBinding
 import android.com.roshchupkin.unsplashapp.model.ImageDomain
 import android.com.roshchupkin.unsplashapp.ui.adapters.ImageAdapter
 import android.com.roshchupkin.unsplashapp.ui.adapters.ImageLoadStateAdapter
-import android.com.roshchupkin.unsplashapp.ui.viewmodel.SearchImagesViewModel
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -15,14 +13,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.map
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class SearchImagesFragment : Fragment(R.layout.fragment_image_list), ImageAdapter.Interaction {
-
-    private val searchImagesViewModel: SearchImagesViewModel by viewModels()
+class ImagesByCollectionFragment
+@Inject
+constructor() : Fragment(R.layout.fragment_image_list), ImageAdapter.Interaction {
+    private val imagesByColletionViewModel: ImagesByColletionViewModel by viewModels()
     lateinit var imageAdapter: ImageAdapter
 
     private var _binding: FragmentImageListBinding? = null
@@ -32,23 +30,21 @@ class SearchImagesFragment : Fragment(R.layout.fragment_image_list), ImageAdapte
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentImageListBinding.bind(view)
 
-        val queryString: String = this.arguments?.getString("queryString").toString()
+        val idCollection: Int = this.arguments?.getInt("itemIdCollection") ?: 0
 
+        imagesByColletionViewModel.getImageList(idCollection).observe(viewLifecycleOwner) {
+            imageAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
         binding.apply {
             recyclerView.apply {
-                imageAdapter = ImageAdapter(this@SearchImagesFragment)
+                imageAdapter = ImageAdapter(this@ImagesByCollectionFragment)
                 adapter = imageAdapter.withLoadStateHeaderAndFooter(
                     header = ImageLoadStateAdapter { imageAdapter.retry() },
                     footer = ImageLoadStateAdapter { imageAdapter.retry() }
                 )
-                scrollToPosition(0)
-                buttonRetry.setOnClickListener { imageAdapter.retry() }
-            }
-            searchImagesViewModel.getImageList(queryString).observe(viewLifecycleOwner) {
-                imageAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+                buttonRetry.setOnClickListener { imageAdapter.refresh() }
             }
         }
-
 
         imageAdapter.addLoadStateListener { loadState ->
             binding.apply {
@@ -58,18 +54,6 @@ class SearchImagesFragment : Fragment(R.layout.fragment_image_list), ImageAdapte
                 textViewSystemMessage.isVisible = loadState.source.refresh is LoadState.Error
                 recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
 
-
-                if (loadState.source.refresh is LoadState.NotLoading &&
-                    loadState.append.endOfPaginationReached &&
-                    imageAdapter.itemCount < 1
-                ) {
-                    recyclerView.isVisible = false
-                    textViewSystemMessage.isVisible = true
-                    textViewSystemMessage.text = "Ваш запрос не найден"
-                } else {
-                    textViewSystemMessage.isVisible = false
-                }
-
             }
         }
 
@@ -77,6 +61,6 @@ class SearchImagesFragment : Fragment(R.layout.fragment_image_list), ImageAdapte
 
     override fun onItemSelected(position: Int, item: ImageDomain) {
         val bundle = bundleOf("itemID" to item.id)
-        findNavController().navigate(R.id.action_searchImageFragment_to_detailImageFragment, bundle)
+        findNavController().navigate(R.id.action_imageFragment_to_detailImageFragment, bundle)
     }
 }

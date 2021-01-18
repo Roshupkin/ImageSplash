@@ -17,6 +17,7 @@
         >
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/material_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="4dp"
@@ -43,7 +44,7 @@
     <androidx.fragment.app.FragmentContainerView
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/fragment_container"
-        android:name="android.com.roshchupkin.unsplashapp.ui.MainNavHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"

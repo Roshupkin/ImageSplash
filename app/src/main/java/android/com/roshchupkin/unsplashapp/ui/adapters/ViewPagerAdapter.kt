@@ -1,8 +1,8 @@
 package android.com.roshchupkin.unsplashapp.ui.adapters
 
 
-import android.com.roshchupkin.unsplashapp.ui.fragment.CollectionFragment
-import android.com.roshchupkin.unsplashapp.ui.fragment.RandomImagesFragment
+import android.com.roshchupkin.unsplashapp.ui.fragments.Collection.CollectionFragment
+import android.com.roshchupkin.unsplashapp.ui.fragments.RandomImages.RandomImagesFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle

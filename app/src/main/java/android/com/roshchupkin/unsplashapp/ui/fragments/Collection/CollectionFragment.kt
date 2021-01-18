@@ -1,11 +1,10 @@
-package android.com.roshchupkin.unsplashapp.ui.fragment
+package android.com.roshchupkin.unsplashapp.ui.fragments.Collection
 
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.databinding.FragmentCollectionBinding
 import android.com.roshchupkin.unsplashapp.model.CollectionDomain
 import android.com.roshchupkin.unsplashapp.ui.adapters.CollectionAdapter
 import android.com.roshchupkin.unsplashapp.ui.adapters.ImageLoadStateAdapter
-import android.com.roshchupkin.unsplashapp.ui.viewmodel.CollectionViewModel
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf

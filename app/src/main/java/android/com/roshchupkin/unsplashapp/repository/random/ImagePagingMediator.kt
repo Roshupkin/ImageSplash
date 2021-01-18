@@ -5,7 +5,6 @@ import android.com.roshchupkin.unsplashapp.database.entity.RandomImageCacheEntit
 import android.com.roshchupkin.unsplashapp.database.mapper.ImageCacheMapper
 import android.com.roshchupkin.unsplashapp.network.mapper.ImageNetworkMapper
 import android.com.roshchupkin.unsplashapp.network.service.UnsplashAPI
-import android.util.Log
 import androidx.paging.*
 import retrofit2.HttpException
 import java.io.IOException
@@ -28,7 +27,7 @@ class ImagePagingMediator(
 
         try {
             if (randomImageDao.dbLength() > 120) {
-                randomImageDao.clearFirs30()
+                randomImageDao.clearFirst30()
             }
 
 

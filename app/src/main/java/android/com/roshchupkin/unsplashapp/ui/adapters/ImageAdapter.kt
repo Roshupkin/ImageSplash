@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import javax.inject.Inject
+
 
 class ImageAdapter(private val interaction: Interaction? = null) :
-PagingDataAdapter<ImageDomain, ImageAdapter.ImageViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<ImageDomain, ImageAdapter.ImageViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ImageDomain>() {
@@ -34,9 +36,7 @@ PagingDataAdapter<ImageDomain, ImageAdapter.ImageViewHolder>(DIFF_CALLBACK) {
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
-    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val binding =
             ItemImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)

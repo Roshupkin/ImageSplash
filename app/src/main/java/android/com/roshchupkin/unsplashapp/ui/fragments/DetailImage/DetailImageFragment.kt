@@ -1,9 +1,8 @@
-package android.com.roshchupkin.unsplashapp.ui.fragment
+package android.com.roshchupkin.unsplashapp.ui.fragments.DetailImage
 
 import android.com.roshchupkin.unsplashapp.R
 import android.com.roshchupkin.unsplashapp.databinding.FragmentDetailImageBinding
 import android.com.roshchupkin.unsplashapp.model.ImageDomain
-import android.com.roshchupkin.unsplashapp.ui.viewmodel.DetailImageViewModel
 import android.com.roshchupkin.unsplashapp.utill.DataState
 import android.content.Intent
 import android.net.Uri

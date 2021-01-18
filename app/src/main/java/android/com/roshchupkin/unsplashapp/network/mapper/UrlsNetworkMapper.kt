@@ -6,7 +6,7 @@ import android.com.roshchupkin.unsplashapp.utill.EntityMapper
 import javax.inject.Inject
 
 class UrlsNetworkMapper @Inject
-    constructor() : EntityMapper<UrlsNetworkEntity, Urls> {
+constructor() : EntityMapper<UrlsNetworkEntity, Urls> {
     override fun mapToEntity(domainModule: Urls): UrlsNetworkEntity {
         return UrlsNetworkEntity(
             full = domainModule.full,
