@@ -1,6 +1,8 @@
 package android.com.roshchupkin.unsplashapp.ui.fragments
 
 import android.com.roshchupkin.unsplashapp.R
+import android.com.roshchupkin.unsplashapp.databinding.FragmentImageListBinding
+import android.com.roshchupkin.unsplashapp.databinding.FragmentViewpagerBinding
 import android.com.roshchupkin.unsplashapp.ui.adapters.ViewPagerAdapter
 import android.os.Bundle
 import android.view.View
@@ -21,15 +23,20 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalPagingApi
 class ViewPagerFragment : Fragment(R.layout.fragment_viewpager) {
 
+    
+    private var _binding: FragmentViewpagerBinding? = null
+    private val binding get() = _binding!!
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.viewpager.adapter = ViewPagerAdapter(
+        _binding = FragmentViewpagerBinding.bind(view)
+
+        binding.viewpager.adapter = ViewPagerAdapter(
             childFragmentManager,
             lifecycle
         )
 
         TabLayoutMediator(
-            requireActivity().tab_layout, view.viewpager
+            requireActivity().tabs, binding.viewpager
         ) { tab, position ->
             when (position) {
                 0 -> {
@@ -71,14 +78,14 @@ class ViewPagerFragment : Fragment(R.layout.fragment_viewpager) {
 
     override fun onResume() {
         super.onResume()
-        requireActivity().tab_layout.isVisible = true
-        requireActivity().material_toolbar.isVisible = true
+        requireActivity().tabs.isVisible = true
+        requireActivity().toolbar.isVisible = true
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        requireActivity().tab_layout.isVisible = false
-        requireActivity().material_toolbar.isVisible = false
+        requireActivity().tabs.isVisible = false
+        requireActivity().toolbar.isVisible = false
     }
 
 
